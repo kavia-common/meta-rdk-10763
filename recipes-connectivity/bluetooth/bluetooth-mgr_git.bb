@@ -12,29 +12,39 @@ SRCREV_FORMAT = "bluetooth-mgr"
 SRC_URI = "${CMF_GIT_ROOT}/rdk/components/generic/bluetooth_mgr;protocol=${CMF_GIT_PROTOCOL};branch=${CMF_GIT_BRANCH}"
 S = "${WORKDIR}/git"
 
-DEPENDS = "bluetooth-core cjson virtual/media-utils"
-DEPENDS += " ${@bb.utils.contains('DISTRO_FEATURES', 'gstreamer1', 'gstreamer1.0 gstreamer1.0-plugins-base', '', d)}"
 
+DEPENDS = "bluetooth-core cjson"
+
+RDEPENDS_${PN}  = " bluetooth-core"
+RDEPENDS_${PN} += " cjson"
+
+
+DEPENDS += " ${@bb.utils.contains('DISTRO_FEATURES', 'gstreamer1', 'gstreamer1.0 gstreamer1.0-plugins-base', '', d)}"
 ENABLE_GST1 = "--enable-gstreamer1=${@bb.utils.contains('DISTRO_FEATURES', 'gstreamer1', 'yes', 'no', d)}"
 EXTRA_OECONF = " ${ENABLE_GST1}"
 
-# RPC Must be Enabled for Video Platforms only; Not for XB platforms. Also iarmbus is dependency for Video Platforms
+# RPC-IARM Must be Enabled for Video Platforms only; Also iarmbus is dependency for Video Platforms
 DEPENDS_append_client = " iarmbus netsrvmgr"
 DEPENDS_append_hybrid = " iarmbus"
-EXTRA_OECONF_append_hybrid = " --enable-rpc"
 EXTRA_OECONF_append_client = " --enable-rpc"
+EXTRA_OECONF_append_hybrid = " --enable-rpc"
 
 DEPENDS += " fcgi"
-DEPENDS += " virtual/media-utils"
-DEPENDS += " audiocapturemgr"
-DEPENDS += " rdk-logger"
 DEPENDS += " rfc"
 
-RDEPENDS_${PN}  = " bluetooth-core"
-RDEPENDS_${PN} += " virtual/media-utils"
-RDEPENDS_${PN} += " cjson"
-RDEPENDS_${PN} += " audiocapturemgr"
+DEPENDS += " rdk-logger"
 RDEPENDS_${PN} += " rdk-logger"
+
+
+DEPENDS_append_client = " virtual/media-utils"
+DEPENDS_append_client = " audiocapturemgr"
+RDEPENDS_${PN}_append_client = " virtual/media-utils"
+RDEPENDS_${PN}_append_client = " audiocapturemgr"
+
+DEPENDS_append_hybrid = " virtual/media-utils"
+DEPENDS_append_hybrid = " audiocapturemgr"
+RDEPENDS_${PN}_append_hybrid = " virtual/media-utils"
+RDEPENDS_${PN}_append_hybrid = " audiocapturemgr"
 
 
 inherit autotools pkgconfig systemd coverity syslog-ng-config-gen
