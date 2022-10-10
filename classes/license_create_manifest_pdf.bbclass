@@ -11,7 +11,7 @@ copy_license_text() {
     fi
 
     # Get the whitelist packages and bad licenses (note: adding space at both ends for better grep)
-    WHITELIST=" ${WHITELIST_GPLv3} ${LGPLv2_WHITELIST_GPLv3} ${LICENSE_FLAGS_WHITELIST} "
+    WHITELIST=" ${WHITELIST_GPLv3} ${LGPLv2_WHITELIST_GPLv3} ${LICENSE_FLAGS_WHITELIST} ${LICENSE_FLAGS_ACCEPTED} "
     BAD_LICENSE=" ${INCOMPATIBLE_LICENSE} "
 
     INSTALLED_PKGS=`cat ${LICENSE_DIRECTORY}/${IMAGE_NAME}/package.manifest`
