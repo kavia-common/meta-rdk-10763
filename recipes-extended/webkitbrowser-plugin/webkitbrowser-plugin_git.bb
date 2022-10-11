@@ -24,7 +24,8 @@ inherit cmake pkgconfig python3native
 
 TOOLCHAIN = "gcc"
 
-DEPENDS += "wpeframework wpeframework-tools-native ${WPEWEBKIT} libsoup-2.4"
+DEPENDS += "wpeframework wpeframework-tools-native ${WPEWEBKIT}"
+DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'enable_libsoup3', 'libsoup', 'libsoup-2.4', d)}"
 
 PACKAGECONFIG ??= "residentapp searchanddiscoveryapp htmlapp lightningapp aampjsbindings badgerbridge customprocessinfo"
 
