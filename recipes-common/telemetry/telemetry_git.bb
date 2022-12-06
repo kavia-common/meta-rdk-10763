@@ -15,10 +15,10 @@ PV = "${RDK_RELEASE}+git${SRCPV}"
 SRCREV ?= "${AUTOREV}"
 S = "${WORKDIR}/git"
 
-CFLAGS += " -Wall -Werror -Wextra -Wno-unused-parameter -Wno-pointer-sign -Wno-sign-compare -Wno-enum-compare -Wno-type-limits "
+CFLAGS += " -Wall -Werror -Wextra -Wno-unused-parameter -Wno-pointer-sign -Wno-sign-compare -Wno-enum-compare -Wno-type-limits -Wno-enum-conversion -Wno-format-truncation"
 
 
-inherit pkgconfig autotools systemd pythonnative breakpad-logmapper
+inherit pkgconfig autotools systemd ${@bb.utils.contains("DISTRO_FEATURES", "kirkstone", "python3native", "pythonnative", d)} breakpad-logmapper
 
 CFLAGS += " -DDROP_ROOT_PRIV "
 

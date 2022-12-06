@@ -31,14 +31,17 @@ TARGET_CFLAGS += " -fno-delete-null-pointer-checks "
 TARGET_CXXFLAGS += " -fno-delete-null-pointer-checks "
 TARGET_CXXFLAGS += " -Wl,--warn-unresolved-symbols "
 
-EXTRA_OECMAKE += " -DRTREMOTE_GENERATOR_EXPORT=${S}/temp/rtRemoteConfigGen_export.cmake "
+EXTRA_OECMAKE_append_kirkstone = " -DRTREMOTE_GENERATOR_EXPORT=${WORKDIR}/build/rtRemoteConfigGen_export.cmake "
+EXTRA_OECMAKE_append_dunfell = " -DRTREMOTE_GENERATOR_EXPORT=${S}/temp/rtRemoteConfigGen_export.cmake "
+EXTRA_OECMAKE_append_morty = " -DRTREMOTE_GENERATOR_EXPORT=${S}/temp/rtRemoteConfigGen_export.cmake "
 EXTRA_OECMAKE += " -DRT_INCLUDE_DIR=${STAGING_INCDIR}/pxcore "
 
-do_configure_prepend() {
+do_configure_prepend_morty() {
     if [ ! -d ${S}/temp ]; then
-    mkdir ${S}/temp
+        mkdir ${S}/temp
     fi
     cd ${S}/temp
+
     cmake -DCMAKE_CROSSCOMPILING=OFF -URTREMOTE_GENERATOR_EXPORT -DCMAKE_C_FLAGS=${BUILD_CFLAGS} -DCMAKE_C_COMPILER=${BUILD_CC} -DCMAKE_CXX_COMPILER=${BUILD_CXX} -DCMAKE_CXX_FLAGS=${BUILD_CXX_FLAGS} ..
     cmake --build . --target rtRemoteConfigGen
     rm -rf ${S}/temp/CMakeCache.txt
@@ -46,6 +49,32 @@ do_configure_prepend() {
     rm -rf ${S}/temp/cmake_install.cmake
     rm -rf ${S}/temp/CMakeFiles 
     cd ..
+}
+
+do_configure_prepend_dunfell() {
+    if [ ! -d ${S}/temp ]; then
+        mkdir ${S}/temp
+    fi
+    cd ${S}/temp
+
+    cmake -DCMAKE_CROSSCOMPILING=OFF -URTREMOTE_GENERATOR_EXPORT -DCMAKE_C_FLAGS=${BUILD_CFLAGS} -DCMAKE_C_COMPILER=${BUILD_CC} -DCMAKE_CXX_COMPILER=${BUILD_CXX} -DCMAKE_CXX_FLAGS=${BUILD_CXX_FLAGS} ..
+    cmake --build . --target rtRemoteConfigGen
+    rm -rf ${S}/temp/CMakeCache.txt
+    rm -rf ${S}/temp/Makefile
+    rm -rf ${S}/temp/cmake_install.cmake
+    rm -rf ${S}/temp/CMakeFiles 
+    cd ..
+}
+
+do_configure_prepend_kirkstone() {
+
+    cd ${WORKDIR}/build
+    cmake -DCMAKE_CROSSCOMPILING=OFF -URTREMOTE_GENERATOR_EXPORT -DCMAKE_C_FLAGS="${BUILD_CFLAGS}" -DCMAKE_C_COMPILER="${BUILD_CC}" -DCMAKE_CXX_COMPILER="${BUILD_CXX}" -DCMAKE_CXX_FLAGS="${BUILD_CXX_FLAGS}" -S ${S}  -B ${WORKDIR}/build ..
+    cmake --build . --target rtRemoteConfigGen
+    rm -rf CMakeCache.txt
+    rm -rf Makefile
+    rm -rf cmake_install.cmake
+    rm -rf CMakeFiles 
 }
 
 do_install () {

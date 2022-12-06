@@ -19,6 +19,7 @@ S = "${WORKDIR}/git"
 
 CFLAGS_append_morty = " -DMORTY_BUILD"
 CFLAGS_append_daisy = " -DMORTY_BUILD"
+CFLAGS_append_kirkstone = " -Wno-restrict -Wno-array-bounds"
 
 ENABLE_BTR_IFCE = "--enable-btr-ifce=${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', \
                                             bb.utils.contains('DISTRO_FEATURES', 'gdbus_bluez5', 'gdbus_bluez5', \

@@ -1,3 +1,3 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-SRC_URI_append_dunfell = "file://ipbind.patch"
+SRC_URI_append = "file://ipbind.patch"

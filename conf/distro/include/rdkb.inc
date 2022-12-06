@@ -16,6 +16,7 @@ PREFERRED_PROVIDER_gmock = "googletest"
 DISTRO_FEATURES_append = " bluetooth"
 DISTRO_FEATURES_append = " bluez5"
 PREFERRED_VERSION_bluez5_dunfell ?= "5.65"
+PREFERRED_VERSION_bluez5_kirkstone ?= "5.65"
 
 PREFERRED_VERSION_php ?= "7.2.%"
 PREFERRED_VERSION_php-native ?= "7.2.%"
@@ -25,6 +26,7 @@ PREFERRED_VERSION_php-native_dunfell ?= "7.4.%"
 PREFERRED_VERSION_log4c = "1.2.3"
 PREFERRED_VERSION_net-snmp = "5.8"
 PREFERRED_VERSION_avro-c = "1.8.1"
+PREFERRED_VERSION_avro-c_kirkstone = "1.11.0"
 
 #PREFERRED_VERSION_icu ?= "64.2"
 #PREFERRED_VERSION_icu-native ?= "64.2"
@@ -34,7 +36,8 @@ PREFERRED_VERSION_icu_dunfell ?= "66.1"
 PREFERRED_VERSION_icu-native_dunfell ?= "66.1"
 
 PREFERRED_VERSION_gupnp ?= "1.2.%"
-PREFERRED_VERSION_openssl = "1.0.2o"
+PREFERRED_VERSION_openssl_dunfell = "1.0.2o"
+PREFERRED_VERSION_openssl_morty = "1.0.2o"
 
 # Adding PREFERRED_VERSION for smcroute
 PREFERRED_VERSION_smcroute ?= "2.0.0"
@@ -53,6 +56,7 @@ PREFERRED_PROVIDER_hal-firewall ?= "hal-firewall-generic"
 
 PREFERRED_VERSION_libmtp = "1.1.5"
 PREFERRED_VERSION_mosquitto_dunfell = "1.6.%"
+PREFERRED_VERSION_mosquitto_kirkstone = "2.0.14"
 PREFERRED_VERSION_gnupg_dunfell = "1.4.7"
 DISTRO_FEATURES_append_dunfell = " logendpoints"
 
@@ -60,6 +64,7 @@ DISTRO_FEATURES_append = " tigress"
 #Masking cedm multicall implementation in RDK-B
 BBMASK .= "|.cpgu-src|.cpgu-pbt|.cpgc-src|.cpgc-pbt"
 
+PREFERRED_VERSION_cjson_kirkstone = "1.7.15"
 PREFERRED_PROVIDER_xfhome ?= "zilker"
 
 # Non-touchstone builds of xfhome may build iksemel that is hosted on
@@ -135,7 +140,9 @@ DISTRO_FEATURES_append = " snmppa"
 DISTRO_FEATURES_append  = " logbacktrace"
 require conf/distro/include/rdkb_backtrace_log.inc
 
-DISTRO_FEATURES_append_dunfell = " heaptrack"
+DISTRO_FEATURES_append = " heaptrack"
+DISTRO_FEATURES_remove_morty = " heaptrack"
+PREFERRED_VERSION_heaptrack_kirkstone = "1.2.%"
 
 DISTRO_FEATURES_remove = "alsa"
 DISTRO_FEATURES_remove = "ext2"
