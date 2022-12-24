@@ -15,7 +15,7 @@ PREFERRED_PROVIDER_gmock = "googletest"
 
 DISTRO_FEATURES_append = " bluetooth"
 DISTRO_FEATURES_append = " bluez5"
-PREFERRED_VERSION_bluez5_dunfell ?= "5.54"
+PREFERRED_VERSION_bluez5_dunfell ?= "5.65"
 
 PREFERRED_VERSION_php ?= "7.2.%"
 PREFERRED_VERSION_php-native ?= "7.2.%"
