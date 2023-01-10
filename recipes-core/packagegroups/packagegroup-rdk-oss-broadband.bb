@@ -41,7 +41,7 @@ RDEPENDS_packagegroup-rdk-oss-broadband = "\
     libtinyxml \
     libupnp \
     libxml2 \
-    lighttpd \
+    ${@bb.utils.contains("DISTRO_FEATURES", "benchmark_enable", "", "lighttpd", d)} \
     log4c \
     logrotate \
     miniupnpd \
@@ -55,7 +55,7 @@ RDEPENDS_packagegroup-rdk-oss-broadband = "\
     ${@bb.utils.contains("DISTRO_FEATURES", "bci", "php-cli", "", d)} \
     ${@bb.utils.contains("DISTRO_FEATURES", "bci", "php-cgi", "", d)} \
     popt \
-    quagga \
+    ${@bb.utils.contains("DISTRO_FEATURES", "benchmark_enable", "", "quagga", d)} \
     smartmontools \
     spawn-fcgi \
     ssmtp \
@@ -75,3 +75,5 @@ RDEPENDS_packagegroup-rdk-oss-broadband += " ${@bb.utils.contains('DISTRO_FEATUR
 
 RDEPENDS_packagegroup-rdk-oss-broadband += " ${@bb.utils.contains('DISTRO_FEATURES', 'dac', 'dobby', '', d)}"
 RDEPENDS_packagegroup-rdk-oss-broadband += " ${@bb.utils.contains('DISTRO_FEATURES', 'dac', 'dsm', '', d)}"
+RDEPENDS_packagegroup-rdk-oss-broadband += " ${@bb.utils.contains("DISTRO_FEATURES", "benchmark_enable", "broadcom-bdmfshell kernel-firmware-longfin-tcm", "", d)}"
+

@@ -1,13 +1,19 @@
-SUMMARY = "Image with open source components used in RDK stack."
+SUMMARY = "Image with open source components used in RDK stack"
 
-inherit core-image
-
-IMAGE_INSTALL =  "packagegroup-rdk-oss-broadband"
-
+IMAGE_FEATURES += "package-management"
 
 LICENSE = "MIT"
 
+inherit core-image rdk-image
 
-IMAGE_ROOTFS_SIZE ?= "8192"
+IMAGE_ROOTFS_SIZE = "8192"
 
-do_rootfs[nostamp] = "1"
+
+IMAGE_INSTALL += "${@bb.utils.contains("DISTRO_FEATURES", "benchmark_enable","packagegroup-rdk-oss-broadband \
+                                                                              broadcom-lattice-cli \
+                                                                              nw-zero-conf-broadband \
+                                                                              rbus \
+                                                                              ca-certificates \
+                                                                              ","",d)}"
+
+
