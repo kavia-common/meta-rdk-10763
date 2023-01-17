@@ -80,6 +80,7 @@ if [ "$#" -eq  "0" ]; then
     # To download all the apps mentioned in rdm-manifest.json file
     idx=0
     packageList=""
+    rfc_disabled_apps=""
     while :
     do
 
@@ -97,6 +98,7 @@ if [ "$#" -eq  "0" ]; then
 				echo "APP_RFC_STATUS:$APP_RFC_STATUS"
             			if [ $APP_RFC_STATUS -ne 0 ]; then
 		    			echo "APP RFC is not enabled, skipping the download for:App:$idx=>$DOWNLOAD_APP_ONDEMAND=>$DOWNLOAD_APP_NAME"
+                                        rfc_disabled_apps="$DOWNLOAD_APP_NAME $rfc_disabled_apps"
 		    			idx=`expr $idx + 1`
 		    			continue;
 	    			fi
@@ -141,7 +143,7 @@ updatePkgStatus()
 
 uninstallPackages()
 {
-    echo "Uninstall the packages which are not available in manifest"
+    echo "Uninstall the old packages that are not listed in current manifest"
     pkg_manifest=$(echo $packageList | xargs)
     echo "Packages listed in manifest: $pkg_manifest"
 
@@ -149,13 +151,15 @@ uninstallPackages()
     installedPkgs=$(getInstalledPackages)
     echo "Installed packages in cpe: $installedPkgs"
     for package in $pkg_manifest; do
-        installedPkgs=${installedPkgs//${package}/}
+        if [[ $rfc_disabled_apps != *"$package"* ]]; then
+            installedPkgs=${installedPkgs//${package}/}
+        fi
     done
 
     uninstall_pkg_list=$(echo $installedPkgs | xargs)
 
     if [ ! -z "$uninstall_pkg_list" -a "$uninstall_pkg_list" != " " ]; then
-        echo "Packages that are not available in manifest but present in device are $uninstall_pkg_list"
+        echo "Packages to be uninstalled: [$uninstall_pkg_list]"
 
         for pkg in $uninstall_pkg_list; do
             rm -rf "$RDM_APP_PATH/$pkg"
