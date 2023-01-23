@@ -47,3 +47,5 @@ TOOLCHAIN_HOST_TASK_append = " ${@'packagegroup-rust-cross-canadian-${MACHINE}' 
 
 #eSDK changes
 include  ${@bb.utils.contains('DISTRO_FEATURES', 'enable_esdk', 'rdk-esdk-override.inc', 'xxx.inc', d)}
+DEPENDS_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'enable_esdk', ' patchelf-native ', '', d)} "
+
