@@ -1,20 +1,20 @@
-From f150adc0f14e27a70c04cad0ff735aa198652117 Mon Sep 17 00:00:00 2001
+From 3ce8a13c479b1edc3e647b751ec365d5963ff891 Mon Sep 17 00:00:00 2001
 From: nganes961 <nambirajan_ganesan@comcast.com>
-Date: Tue, 20 Dec 2022 19:17:02 +0000
+Date: Wed, 25 Jan 2023 18:31:36 +0000
 Subject: [PATCH] Launch metrics
 
 Signed-off-by: nganes961 <nambirajan_ganesan@comcast.com>
 ---
  WebKitBrowser/WebKitBrowser.cpp        |   3 +
  WebKitBrowser/WebKitBrowser.h          |   1 +
- WebKitBrowser/WebKitImplementation.cpp | 219 ++++++++++++++++++++++++-
- 3 files changed, 218 insertions(+), 5 deletions(-)
+ WebKitBrowser/WebKitImplementation.cpp | 220 ++++++++++++++++++++++++-
+ 3 files changed, 219 insertions(+), 5 deletions(-)
 
 diff --git a/WebKitBrowser/WebKitBrowser.cpp b/WebKitBrowser/WebKitBrowser.cpp
-index 138e958e..b97e78f4 100644
+index 83978dcb..4a2e5b05 100644
 --- a/WebKitBrowser/WebKitBrowser.cpp
 +++ b/WebKitBrowser/WebKitBrowser.cpp
-@@ -294,6 +294,7 @@ namespace Plugin {
+@@ -314,6 +314,7 @@ namespace Plugin {
      {
          string message(string("{ \"url\": \"") + URL + string("\", \"loaded\": ") + (loaded ? string("true") : string("false")) + string(" }"));
          TRACE(Trace::Information, (_T("URLChanged: %s"), message.c_str()));
@@ -22,7 +22,7 @@ index 138e958e..b97e78f4 100644
          _service->Notify(message);
          Exchange::JWebBrowser::Event::URLChange(*this, URL, loaded);
      }
-@@ -336,6 +337,8 @@ namespace Plugin {
+@@ -360,6 +361,8 @@ namespace Plugin {
      {
          if (connection->Id() == _connectionId) {
  
@@ -32,10 +32,10 @@ index 138e958e..b97e78f4 100644
  
              Core::IWorkerPool::Instance().Submit(PluginHost::IShell::Job::Create(_service, PluginHost::IShell::DEACTIVATED, PluginHost::IShell::FAILURE));
 diff --git a/WebKitBrowser/WebKitBrowser.h b/WebKitBrowser/WebKitBrowser.h
-index ea6e07bb..c36bc795 100644
+index c2cad5f9..eeba30cc 100644
 --- a/WebKitBrowser/WebKitBrowser.h
 +++ b/WebKitBrowser/WebKitBrowser.h
-@@ -244,6 +244,7 @@ namespace Plugin {
+@@ -285,6 +285,7 @@ namespace Plugin {
          Core::Sink<Notification> _notification;
          Core::ProxyPoolType<Web::JSONBodyType<WebKitBrowser::Data>> _jsonBodyDataFactory;
          string _persistentStoragePath;
@@ -44,7 +44,7 @@ index ea6e07bb..c36bc795 100644
  }
  }
 diff --git a/WebKitBrowser/WebKitImplementation.cpp b/WebKitBrowser/WebKitImplementation.cpp
-index ef553588..291642c1 100644
+index 9a6a101c..32ef94c7 100644
 --- a/WebKitBrowser/WebKitImplementation.cpp
 +++ b/WebKitBrowser/WebKitImplementation.cpp
 @@ -23,6 +23,8 @@
@@ -56,7 +56,7 @@ index ef553588..291642c1 100644
  
  #include "Module.h"
  
-@@ -349,6 +351,17 @@ static GSourceFuncs _handlerIntervention =
+@@ -356,6 +358,17 @@ static GSourceFuncs _handlerIntervention =
          }
      }
  
@@ -74,7 +74,7 @@ index ef553588..291642c1 100644
      class WebKitImplementation : public Core::Thread,
                                   public Exchange::IBrowser,
                                   public Exchange::IWebBrowser,
-@@ -797,6 +810,12 @@ static GSourceFuncs _handlerIntervention =
+@@ -819,6 +832,12 @@ static GSourceFuncs _handlerIntervention =
              , _unresponsiveReplyNum(0)
              , _frameCount(0)
              , _lastDumpTime(g_get_monotonic_time())
@@ -87,7 +87,7 @@ index ef553588..291642c1 100644
          {
              // Register an @Exit, in case we are killed, with an incorrect ref count !!
              if (atexit(CloseDown) != 0) {
-@@ -1192,6 +1211,7 @@ static GSourceFuncs _handlerIntervention =
+@@ -1592,6 +1611,7 @@ static GSourceFuncs _handlerIntervention =
                          object->_adminLock.Unlock();
  
                          object->SetResponseHTTPStatusCode(-1);
@@ -95,20 +95,21 @@ index ef553588..291642c1 100644
  #ifdef WEBKIT_GLIB_API
                          webkit_web_view_load_uri(object->_view, object->_URL.c_str());
  #else
-@@ -1200,6 +1220,12 @@ static GSourceFuncs _handlerIntervention =
+@@ -1600,6 +1620,13 @@ static GSourceFuncs _handlerIntervention =
                          WKPageLoadURL(object->_page, shellURL);
                          WKRelease(shellURL);
  #endif
 +                        if (url != "about:blank")
 +                        {
 +                            ++object->_pageLoadNum;
++                            object->_didLogLaunchMetrics = false;
 +                            object->collectMetricsOnLoadStart();
 +                        }
 +
                          return G_SOURCE_REMOVE;
                      },
                      data,
-@@ -1601,6 +1627,14 @@ static GSourceFuncs _handlerIntervention =
+@@ -2001,6 +2028,14 @@ static GSourceFuncs _handlerIntervention =
              _adminLock.Lock();
  
              _URL = URL;
@@ -117,13 +118,13 @@ index ef553588..291642c1 100644
 +            {
 +                logLaunchMetrics();
 +            }
-+            _webProcessState = WebProcessHot;
++            _webProcessState = WebProcessWarm;
 +            _loadFailed = false;
 +
              {
                  std::list<Exchange::IWebBrowser::INotification*>::iterator index(_notificationClients.begin());
  
-@@ -1631,6 +1665,7 @@ static GSourceFuncs _handlerIntervention =
+@@ -2031,6 +2066,7 @@ static GSourceFuncs _handlerIntervention =
                  index++;
              }
  
@@ -131,7 +132,7 @@ index ef553588..291642c1 100644
              _adminLock.Unlock();
          }
          void OnStateChange(const PluginHost::IStateControl::state newState)
-@@ -1997,6 +2032,150 @@ static GSourceFuncs _handlerIntervention =
+@@ -2399,6 +2435,150 @@ static GSourceFuncs _handlerIntervention =
              return _consoleLogPrefix;
          }
  #endif
@@ -146,7 +147,7 @@ index ef553588..291642c1 100644
 +                switch(_webProcessState)
 +                {
 +                    case WebProcessCold: return "Cold";
-+                    case WebProcessHot:  return "Hot";
++                    case WebProcessWarm:  return "Warm";
 +                }
 +                return "Unknown";
 +            };
@@ -282,7 +283,7 @@ index ef553588..291642c1 100644
          BEGIN_INTERFACE_MAP(WebKitImplementation)
          INTERFACE_ENTRY(Exchange::IWebBrowser)
          INTERFACE_ENTRY(Exchange::IBrowser)
-@@ -2071,6 +2250,10 @@ static GSourceFuncs _handlerIntervention =
+@@ -2477,6 +2657,10 @@ static GSourceFuncs _handlerIntervention =
  #endif
                          object->OnStateChange(PluginHost::IStateControl::SUSPENDED);
  
@@ -293,7 +294,7 @@ index ef553588..291642c1 100644
                          TRACE_GLOBAL(Trace::Information, (_T("Internal Suspend Notification took %d mS."), static_cast<uint32_t>(Core::Time::Now().Ticks() - object->_time)));
  
                          object->CheckWebProcess();
-@@ -2420,6 +2603,10 @@ static GSourceFuncs _handlerIntervention =
+@@ -2849,6 +3033,10 @@ static GSourceFuncs _handlerIntervention =
  
              URL(static_cast<const string>(_URL));
  
@@ -304,7 +305,7 @@ index ef553588..291642c1 100644
              // Move into the correct state, as requested
              auto* backend = webkit_web_view_backend_get_wpe_backend(webkit_web_view_get_backend(_view));
              _adminLock.Lock();
-@@ -2649,6 +2836,10 @@ static GSourceFuncs _handlerIntervention =
+@@ -3093,6 +3281,10 @@ static GSourceFuncs _handlerIntervention =
  
              URL(static_cast<const string>(_URL));
  
@@ -315,7 +316,7 @@ index ef553588..291642c1 100644
              // Move into the correct state, as requested
              _adminLock.Lock();
              if ((_state == PluginHost::IStateControl::SUSPENDED) || (_state == PluginHost::IStateControl::UNINITIALIZED)) {
-@@ -2766,6 +2957,17 @@ static GSourceFuncs _handlerIntervention =
+@@ -3237,6 +3429,17 @@ static GSourceFuncs _handlerIntervention =
  #endif
          }
  
@@ -333,7 +334,7 @@ index ef553588..291642c1 100644
          void DidReceiveWebProcessResponsivenessReply(bool isWebProcessResponsive)
          {
              if (_config.WatchDogHangThresholdInSeconds.Value() == 0 || _config.WatchDogCheckTimeoutInSeconds.Value() == 0)
-@@ -2783,15 +2985,11 @@ static GSourceFuncs _handlerIntervention =
+@@ -3254,15 +3457,11 @@ static GSourceFuncs _handlerIntervention =
              if (isWebProcessResponsive && _unresponsiveReplyNum == 0)
                  return;
  
@@ -350,14 +351,14 @@ index ef553588..291642c1 100644
  #endif
  
              if (isWebProcessResponsive) {
-@@ -2907,6 +3105,17 @@ static GSourceFuncs _handlerIntervention =
+@@ -3385,6 +3584,17 @@ static GSourceFuncs _handlerIntervention =
          uint32_t _unresponsiveReplyNum;
          unsigned _frameCount;
          gint64 _lastDumpTime;
 +        enum WebProcessLaunchState
 +        {
 +            WebProcessCold,  // the process is launching
-+            WebProcessHot    // the process is up and ready
++            WebProcessWarm    // the process is up and ready
 +        }_webProcessState;
 +        bool _didLogLaunchMetrics;
 +        gint64 _pageLoadStart;
