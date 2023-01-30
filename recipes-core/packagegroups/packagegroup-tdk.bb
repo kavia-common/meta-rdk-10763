@@ -12,6 +12,7 @@ PACKAGES = "\
 #components used in TDK
 RDEPENDS_packagegroup-tdk = "\
   tdk \
+  ${@bb.utils.contains('DISTRO_FEATURES', 'enable_kernel_testing', 'ltp', '', d)} \
   ${@bb.utils.contains('DISTRO_FEATURES', 'enable_firebolt_compliance_tdk', 'waymetric', '', d)} \
   "
 
