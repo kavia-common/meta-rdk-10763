@@ -202,6 +202,17 @@ EOF
 
 (
 set +e
+# Hook for multiconfig build, where we create multiconfig directory under build conf directory and
+# copy mc conf files
+mul_hooks=$(ls -1 ../*{,/*}/conf/machine/post-builddir-$MACHINE.sh 2>/dev/null)
+if [ -f "$mul_hooks" ]; then
+        echo "running script $mul_hooks"
+        source $mul_hooks $MACHINE
+fi
+)
+
+(
+set +e
 #Hooks for selecting QT for SKY Platform
 qt5_hooks=$(ls -1 ../*{,/*}/conf/machine/sky-setup.sh 2>/dev/null)
 if [ -f "$qt5_hooks" ]; then
