@@ -18,8 +18,8 @@ SRC_URI = "git://github.com/rdkcentral/rdkservices.git;protocol=git;branch=main\
   file://0008-DELIA-59848-Check-if-response-is-from-main-frame.patch;patchdir=../ \
 "
 
-# Tip of the main at Feb 13, 2023
-SRCREV = "4dbdad1870449ea51f320926324fd7cfcfffd5a0"
+# Tip of the main at Feb 17, 2023
+SRCREV = "53e2389cb349edf3f34236d2120987ceaf823cd4"
 
 inherit cmake pkgconfig python3native
 
