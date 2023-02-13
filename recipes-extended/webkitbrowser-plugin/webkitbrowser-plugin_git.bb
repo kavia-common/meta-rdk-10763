@@ -19,7 +19,7 @@ SRC_URI = "git://github.com/rdkcentral/rdkservices.git;protocol=git;branch=main\
 "
 
 # Tip of the main at Feb 13, 2023
-SRCREV = "1fabe63ffd5f8d05abbddf3beb7cbee9fe7f407c"
+SRCREV = "4dbdad1870449ea51f320926324fd7cfcfffd5a0"
 
 inherit cmake pkgconfig python3native
 
