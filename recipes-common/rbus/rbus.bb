@@ -13,6 +13,7 @@ S = "${WORKDIR}/git"
 inherit cmake systemd pkgconfig coverity syslog-ng-config-gen
 DEPENDS = "cjson msgpack-c rdk-logger linenoise"
 
+
 #RDK Specific Enablements
 EXTRA_OECMAKE += " -DCMAKE_BUILD_TYPE=Release "
 EXTRA_OECMAKE += " -DMSG_ROUNDTRIP_TIME=ON -DENABLE_RDKLOGGER=ON"

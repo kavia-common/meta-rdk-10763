@@ -19,8 +19,8 @@ PREFERRED_VERSION_brotli = "1.0.7"
 PREFERRED_VERSION_brotli-native = "1.0.7"
 
 # Disabling Dunfell version of breakpad for timebeing due to DELIA-48240. Till issue is fixed morty version of breakpad will be used in dunfell builds.
-PREFERRED_VERSION_breakpad_dunfell = "svn"
-PREFERRED_VERSION_breakpad-native_dunfell = "svn"
+PREFERRED_VERSION_breakpad_dunfell = "${@bb.utils.contains('DISTRO_FEATURES', 'breakpadgit', 'git', 'svn', d)}"
+PREFERRED_VERSION_breakpad-native_dunfell = "${@bb.utils.contains('DISTRO_FEATURES', 'breakpadgit', 'git', 'svn', d)}"
 
 BBMASK .= "|.*recipes-ccsp|.*recipes-rdkb|.*webpabroadband"
 

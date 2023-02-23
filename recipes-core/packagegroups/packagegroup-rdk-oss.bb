@@ -41,6 +41,8 @@ RDEPENDS_packagegroup-rdk-oss = "\
     smartmontools \
     spawn-fcgi \
     yajl \
+    rbustools  \
+    rbusmirrors \
     "
 GST_ALSA = "${@bb.utils.contains('COMBINED_FEATURES', 'alsa', 'gstreamer1.0-plugins-base-alsa', '',d)}"
 
