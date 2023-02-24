@@ -13,7 +13,7 @@ PACKAGES = "\
 RDEPENDS_packagegroup-rdk-generic-mediaclient = "\
     dnsmasq \
     ${@bb.utils.contains("WEBBACKENDS", "rdkbrowser", "rdkbrowser-webserver", "", d)} \
-    tr69agent \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'tr69agent','tr69agent' , '',  d)}  \
     tr69hostif \
     tenablehdcp \
     netsrvmgr \
