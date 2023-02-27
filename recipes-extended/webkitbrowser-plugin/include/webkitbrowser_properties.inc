@@ -5,6 +5,9 @@ WEBKITBROWSER_XHRCACHE ?= "true"
 WEBKITBROWSER_TRANSPARENT ?= "true"
 WEBKITBROWSER_INJECTEBLE_BUNDLE ?= "libWPEInjectedBundle.so"
 
+#setting local storage enabled state
+JSPP_LOCALSTORAGE_ENABLE ?= "true"
+
 #setting 100KB localstorage size
 HTML_APP_LOCALSTORAGESIZE ?= "100"
 LIGHTNING_APP_LOCALSTORAGESIZE ?= "100"
