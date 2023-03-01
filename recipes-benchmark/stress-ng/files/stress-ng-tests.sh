@@ -1,10 +1,15 @@
 #!/bin/sh
 
-
+source /etc/device.properties
 ## Start Global variables
 
+if [ "$DEVICE_TYPE" == "broadband" ]; then
+	RW_DISK_LOCATION="/rdklogs"
+	LOG_PATH="/rdklogs/logs"
+else
 RW_DISK_LOCATION="/opt"
 LOG_PATH="/opt/logs"
+fi
 STRESS_NG_LOG_PATH="$LOG_PATH/stress-ng_logs"
 LOG_FILE="$STRESS_NG_LOG_PATH/rdk-oss-perf-stats.log"
 STRESS_NG_WORKSPACE="$RW_DISK_LOCATION/stress-ng"
@@ -112,7 +117,7 @@ schedulerTests() {
     #In Axi6 clone forks the processes more than the limit which casues the crash
     #TBD:skyxione scheduler case causes reboot.
     if [ "$DEVICE_NAME" != "XiOne" ]; then
-    execAndRedirectOut stress-ng --sequential $SCHEDULER_INSTANCE --class scheduler -t $SCHEDULER_TIME --exclude netlink-task,vforkmany,clone,sem-sysv,schedpolicy,session,hrtimers $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
+    execAndRedirectOut stress-ng --sequential $SCHEDULER_INSTANCE --class scheduler -t $SCHEDULER_TIME --exclude netlink-task,vforkmany,clone,sem-sysv,schedpolicy,session,hrtimers,softlockup $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
     execAndRedirectOut stress-ng --vforkmany 1 --vforkmany-ops 1000 -t 20s $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
     execAndRedirectOut stress-ng --vfork 1 -t 20s $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
     execAndRedirectOut stress-ng --clone 1 -t 20s $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
@@ -171,7 +176,7 @@ timerTests(){
 networkTests(){
     test="network"
     #sock testcase has some issue
-    execAndRedirectOut stress-ng --sequential $NETWORK_INSTANCE --class network --exclude dccp,sctp,sock -t $NETWORK_TIME $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
+    execAndRedirectOut stress-ng --sequential $NETWORK_INSTANCE --class network --exclude dccp,sctp,sock,sockpair -t $NETWORK_TIME $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
     sh /lib/rdk/capture-proc-metrics.sh $test
 }
 
@@ -211,7 +216,7 @@ fileTests() {
    #xione does not support copy-file and fanotify stressor
    execAndRedirectOut stress-ng --sequential $FILE_INSTANCE --class filesystem --exclude binderfs,chattr,fiemap,xattr,iomix,copy-file,fanotify,procfs -t $FILE_TIME $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
    else
-   execAndRedirectOut stress-ng --sequential $FILE_INSTANCE --class filesystem --exclude binderfs,chattr,fiemap,xattr,iomix -t $FILE_TIME $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
+   execAndRedirectOut stress-ng --sequential $FILE_INSTANCE --class filesystem --exclude binderfs,chattr,fiemap,xattr,iomix,procfs -t $FILE_TIME $ENABLE_OPTIONS $YAML_OPTION$test$TEST_COUNT.yaml
    fi
    sh /lib/rdk/capture-proc-metrics.sh $test
 }
@@ -243,7 +248,11 @@ getStressExeSize() {
 
 init(){
    rm -rf $LOG_PATH/*  
+   if [ "$DEVICE_TYPE" == "broadband" ]; then
+	   mkdir -p /rdklogs/stress-ng
+   else
    mkdir -p /opt/stress-ng
+   fi
    mkdir -p $LOG_PATH/stress-ng_logs
    echo '' > $LOG_FILE
    rm -f $STRESS_NG_LOG_PATH/metrics_*

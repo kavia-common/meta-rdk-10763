@@ -14,6 +14,9 @@ IMAGE_INSTALL += "${@bb.utils.contains("DISTRO_FEATURES", "benchmark_enable","pa
                                                                               nw-zero-conf-broadband \
                                                                               rbus \
                                                                               ca-certificates \
+									      rdk-ca-store \
+							                      stress-ng \
+									      perf \
                                                                               ","",d)}"
 
 

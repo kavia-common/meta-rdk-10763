@@ -1,7 +1,13 @@
 #!/bin/sh
+source /etc/device.properties
 
+if [ "$DEVICE_TYPE" == "broadband" ]; then
+	RW_DISK_LOCATION="/rdklogs/logs"
+	LOG_PATH="/rdklogs/logs"
+else
 RW_DISK_LOCATION="/opt"
 LOG_PATH="/opt/logs"
+fi
 STRESS_NG_LOG_PATH="$LOG_PATH/stress-ng_logs"
 LOG_FILE="$STRESS_NG_LOG_PATH/rdk-oss-perf-stats.yaml"
 STRESS_NG_WORKSPACE="$RW_DISK_LOCATION/stress-ng"_

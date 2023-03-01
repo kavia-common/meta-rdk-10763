@@ -44,9 +44,17 @@ NUM_UPLOAD_ATTEMPTS=3
 OPENSSL_LOG_PATH=$4
 
 # initialize the variables
+if [ $DEVICE_TYPE == "broadband" ]; then
+	 MAC=`ifconfig erouter0 | grep HWaddr | cut -d " " -f7 | sed 's/://g'`
+else
 MAC=`ifconfig eth0 | grep eth0 | tr -s ' ' | cut -d ' ' -f5`
+fi
+
 DT=`date "+%m-%d-%y-%I-%M%p"`
 LOG_FILE=$MAC"_Logs_$DT.tgz"
+if [ "$DEVICE_TYPE" == "broadband" ]; then
+	LOG_PATH="/rdklogs/logs"
+fi
 STRESS_NG_LOG_PATH="$LOG_PATH/stress-ng_logs"
 
 # working folders

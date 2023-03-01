@@ -75,5 +75,5 @@ RDEPENDS_packagegroup-rdk-oss-broadband += " ${@bb.utils.contains('DISTRO_FEATUR
 
 RDEPENDS_packagegroup-rdk-oss-broadband += " ${@bb.utils.contains('DISTRO_FEATURES', 'dac', 'dobby', '', d)}"
 RDEPENDS_packagegroup-rdk-oss-broadband += " ${@bb.utils.contains('DISTRO_FEATURES', 'dac', 'dsm', '', d)}"
-RDEPENDS_packagegroup-rdk-oss-broadband += " ${@bb.utils.contains("DISTRO_FEATURES", "benchmark_enable", "broadcom-bdmfshell kernel-firmware-longfin-tcm", "", d)}"
+RDEPENDS_packagegroup-rdk-oss-broadband += " ${@bb.utils.contains("DISTRO_FEATURES", "benchmark_enable", "broadcom-bdmfshell", "", d)}"
 
