@@ -15,11 +15,10 @@ SRC_URI = "git://github.com/rdkcentral/rdkservices.git;protocol=git;branch=main\
   file://0005-Enable-mixed-content.patch;patchdir=../ \
   file://0006-Introduce-state-aware-memory-observer.patch;patchdir=../ \
   file://0007-Launch-Metrics-data-collection.patch;patchdir=../ \
-  file://0008-DELIA-59848-Check-if-response-is-from-main-frame.patch;patchdir=../ \
 "
 
-# Tip of the main at Feb 27, 2023
-SRCREV = "0eec07f6fd6bff35b016524ad15335c247eb400e"
+# Tip of the main at Mar 03, 2023
+SRCREV = "4c47eb958b39a22c68c3ffa4a261e0a93351d8f2"
 
 inherit cmake pkgconfig python3native
 
