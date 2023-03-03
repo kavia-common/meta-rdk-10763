@@ -10,8 +10,11 @@ DEPENDS_append = "${@bb.utils.contains('DISTRO_FEATURES', 'gdbus_bluez5', 'glib-
 
 RDEPENDS_${PN} = "dbus ${BLUEZ} rdk-logger"
 PV = "${RDK_RELEASE}+git${SRCPV}"
-SRC_URI = "${CMF_GIT_ROOT}/rdk/components/generic/bluetooth;protocol=${CMF_GIT_PROTOCOL};branch=${CMF_GIT_BRANCH}"
+
 SRCREV = "${AUTOREV}"
+SRCREV_FORMAT = "bluetooth-core"
+
+SRC_URI = "${CMF_GIT_ROOT}/rdk/components/generic/bluetooth;protocol=${CMF_GIT_PROTOCOL};branch=${CMF_GIT_BRANCH}"
 S = "${WORKDIR}/git"
 
 CFLAGS_append_morty = " -DMORTY_BUILD"
