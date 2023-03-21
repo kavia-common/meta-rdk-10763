@@ -92,6 +92,9 @@ DISTRO_FEATURES_append  = " logbacktrace"
 
 require conf/distro/include/rdk_backtrace_log.inc
 
+DISTRO_FEATURES_append  = " certconfig"
+DISTRO_FEATURES_remove_rpi = "certconfig"
+
 DISTRO_FEATURES_append  = " rdkssa"
 #RDKPI-429
 DISTRO_FEATURES_remove_rpi = "rdkssa"
