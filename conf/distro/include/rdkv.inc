@@ -129,6 +129,9 @@ PREFERRED_VERSION_libcobalt_morty = "21.lts.stable"
 #TR69Agent as distro
 DISTRO_FEATURES_append_client = " tr69agent"
 
+# Guarding RDK-40652 with DISTRO
+DISTRO_FEATURES_append_dunfell = " systemd-journal-cache"
+
 #Masking the below recipes because in kirkstone build recipes pulling older version due to layer priority
 BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-support/fcgi/fcgi_2.4.0.bb', '', d)}"
 BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-devtools/jsonrpc/jsonrpc_0.7.0.bb', '', d)}"
