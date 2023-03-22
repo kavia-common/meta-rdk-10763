@@ -22,7 +22,11 @@ setLogFile(){
 }
 
 getEthMac(){
-    ifconfig eth0 | grep "HWaddr" | tr -s " " | cut -d ' ' -f5
+    if [ "$DEVICE_TYPE" == "broadband" ]; then
+       ifconfig erouter0 | grep "HWaddr" | tr -s " " | cut -d ' ' -f5
+    else
+       ifconfig eth0 | grep "HWaddr" | tr -s " " | cut -d ' ' -f5
+    fi
 }
 
 getCpuModel(){
@@ -43,7 +47,12 @@ populateSystemInfo()
       echo "    machine: `getCpuModel`" >> $LOG_FILE
       echo "    uptime: `cat /proc/uptime | cut -d " " -f1`" >> $LOG_FILE
       echo "    gcc-version : `sed -e "s/.*gcc version //g" /proc/version | cut -d " " -f1`" >> $LOG_FILE
-      if [ -d /opt/logs/openssl_logs ]; then
+      if [ "$DEVICE_TYPE" == "broadband" ]; then
+	      OPENSSL_LOG_PATH="/rdklogs/logs/openssl_logs"
+      else
+	      OPENSSL_LOG_PATH="/opt/logs/openssl_logs"
+      fi
+      if [ -d "$OPENSSL_LOG_PATH" ]; then
       echo "    Openssl-version: `openssl version | cut -d " " -f2`" >> $LOG_FILE
       fi
       echo "" >> $LOG_FILE

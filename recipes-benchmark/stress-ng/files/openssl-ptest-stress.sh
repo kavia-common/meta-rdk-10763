@@ -1,4 +1,7 @@
 #!/bin/sh
+
+source /etc/device.properties 
+
 run() {
     number=$1
     shift
@@ -16,7 +19,13 @@ if [ ! -d $dir_path ]; then
     echo "Please wait for the openssl ptest package to download"
     exit
 fi
-LOG_PATH="/opt/logs/openssl_logs"
+
+if [ "$DEVICE_TYPE" == "broadband" ]; then
+     RW_DISK_LOCATION="/rdklogs"
+     LOG_PATH="/rdklogs/logs/openssl_logs"
+else
+     LOG_PATH="/opt/logs/openssl_logs"
+fi
 mkdir -p $LOG_PATH
 LOG_FILE="$LOG_PATH/openssl-stats.log"
 log(){

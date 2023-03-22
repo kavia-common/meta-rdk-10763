@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source /etc/device.properties
+
 if [ -d /tmp/openssl-ptest ]; then
 dir_path="/tmp/openssl-ptest/usr/lib/openssl/ptest/"
 elif [ -d /tmp/lib32-openssl-ptest ]; then
@@ -12,9 +14,16 @@ if [ ! -d $dir_path ]; then
 fi
 
 # / **Global Variables **/
-LOG_PATH="/opt/logs/openssl_logs"
-perf_stat="perf stat -e branch-instructions,branch-misses,bus-cycles,cache-misses,cache-references,cpu-cycles,instructions,alignment-faults,cs,cpu-clock,cpu-migrations,major-faults,minor-faults,page-faults,task-clock,L1-dcache-load-misses,L1-dcache-store-misses,dTLB-load-misses,iTLB-load-misses,sched:sched_wakeup_new,sched:sched_wakeup,sched:sched_switch,migrate:mm_migrate_pages,sched:sched_move_numa,kmem:mm_page_alloc,kmem:kmalloc"
+if [ "$DEVICE_TYPE" == "broadband" ]; then
+      RW_DISK_LOCATION="/rdklogs"
+      LOG_PATH="/rdklogs/logs/openssl_logs"
+      perf_stat="perf stat -e branch-instructions,branch-misses,bus-cycles,cache-misses,cache-references,cpu-cycles,instructions,alignment-faults,cs,cpu-clock,cpu-migrations,major-faults,minor-faults,page-faults,task-clock,L1-dcache-load-misses,L1-dcache-store-misses,dTLB-load-misses,iTLB-load-misses,sched:sched_wakeup_new,sched:sched_wakeup,sched:sched_switch,sched:sched_move_numa"
 
+else
+      LOG_PATH="/opt/logs/openssl_logs"
+      perf_stat="perf stat -e branch-instructions,branch-misses,bus-cycles,cache-misses,cache-references,cpu-cycles,instructions,alignment-faults,cs,cpu-clock,cpu-migrations,major-faults,minor-faults,page-faults,task-clock,L1-dcache-load-misses,L1-dcache-store-misses,dTLB-load-misses,iTLB-load-misses,sched:sched_wakeup_new,sched:sched_wakeup,sched:sched_switch,migrate:mm_migrate_pages,sched:sched_move_numa,kmem:mm_page_alloc,kmem:kmalloc"
+
+fi
 #Logging Arguments
 upload_protocol="HTTP"
 upload_httplink="https://ssr.ccp.xcal.tv/cgi-bin/S3.cgi"
