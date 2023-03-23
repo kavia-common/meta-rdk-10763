@@ -35,8 +35,6 @@ RDEPENDS_packagegroup-rdk-media-common = "\
     ipv6calc-main \
     iptables \
     ${@bb.utils.contains("DISTRO_FEATURES", "bluetooth", "${BLUEZ} bluetooth-core bluetooth-mgr virtual/media-utils", "", d)} \
-    ${@bb.utils.contains("DISTRO_FEATURES", "bluetooth", \
-        bb.utils.contains('DISTRO_FEATURES', 'bluez5', " bluetooth-leappmgr", '', d), "",d)} \
     systemd-usb-support \
     nlmonitor \
     nghttp2-server \
