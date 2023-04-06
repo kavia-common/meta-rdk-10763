@@ -75,6 +75,8 @@ RDEPENDS_packagegroup-rdk-ccsp-broadband += "\
     ${@bb.utils.contains("DISTRO_FEATURES", "mlt", "sys-resource", " ", d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'bci', bb.utils.contains('DISTRO_FEATURES', 'bci_webui_jst', 'ccsp-webui-bci-jst','ccsp-webui-bci-php', d), bb.utils.contains('DISTRO_FEATURES', 'webui_jst', 'ccsp-webui-jst','ccsp-webui-php', d), d)} \
 "
+RDEPENDS_packagegroup-rdk-ccsp-broadband += " ${@bb.utils.contains('DISTRO_FEATURES', 'mqttCM', 'mqttcm', '', d)}"
+
 RDEPENDS_packagegroup-rdk-ccsp-broadband += " ${@bb.utils.contains('DISTRO_FEATURES', 'aker', 'aker', '', d)}"
 
 RDEPENDS_packagegroup-rdk-ccsp-broadband += " ${@bb.utils.contains('DISTRO_FEATURES', 'webconfig_bin', 'webcfg', '', d)}"
