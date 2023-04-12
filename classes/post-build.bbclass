@@ -46,17 +46,18 @@ do_postbuild_shell () {
  echo >> ${S3_FILE_NAME}
  cat console_tmp >> ${S3_FILE_NAME}
  
- curl -s -k -T ${S3_FILE_NAME} https://dvms3upload.stb.r53.xcal.tv/unenc/ccp-stb-dvm-data/${S3_File_In_Bkt} > /dev/null 2>&1 
+ DVM_SERVER_URL_PATH="https://dvms3upload.stb.r53.xcal.tv/unenc/ccp-stb-dvm-data"
+ /usr/bin/curl  --connect-timeout 5 --max-time 120  -s -k -T ${S3_FILE_NAME} ${DVM_SERVER_URL_PATH}/${S3_File_In_Bkt} > /dev/null 2>&1
 
  rm -f console_tmp
- echo "POST-BUILD: Done"
+
 }
 
 addhandler postbuild_eventhandler
 python postbuild_eventhandler() {
  from bb.event import getName
- if ( getName(e) == "CookerExit" ):
-  print ("POST-BUILD: Copying stats to S3, this may take few minutes. Please wait...")
-  bb.build.exec_func("do_postbuild_shell", e.data)
+ #bb.note("The name of the Event is %s" % getName(e))
+ bb.build.exec_func("do_postbuild_shell", e.data)
 }
+postbuild_eventhandler[eventmask] = "bb.event.BuildCompleted"
 
