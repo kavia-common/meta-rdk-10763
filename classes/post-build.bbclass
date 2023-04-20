@@ -41,8 +41,8 @@ do_postbuild_shell () {
  echo "DEV_VM_BUILD_ANALYTICS_Images:${IMAGES}" >> ${S3_FILE_NAME}
  echo "DEV_VM_BUILD_ANALYTICS_Space_Used: ${SPACE_USED}" >> ${S3_FILE_NAME}
  echo "*********************" >> ${S3_FILE_NAME}
- echo >> ${S3_FILE_NAME}
- grep "cmd" buildhistory/.git/COMMIT_EDITMSG >> ${S3_FILE_NAME}
+ #echo >> ${S3_FILE_NAME}
+ #grep "cmd" buildhistory/.git/COMMIT_EDITMSG >> ${S3_FILE_NAME}
  echo >> ${S3_FILE_NAME}
  cat console_tmp >> ${S3_FILE_NAME}
  
