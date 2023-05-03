@@ -33,6 +33,8 @@ ROOTFS_POSTPROCESS_COMMAND_append = "generate_containers_environment ;"
 
 def get_oe_version(bb, d):
      bb_version = d.getVar('BB_VERSION', True) or ""
+     if bb_version in [ '2.2.0' ]:
+         return "4.0"
      if bb_version in [ '1.44.0', '1.46.0']:
          return "3.1"
      if bb_version in [ '1.30.0' ]:

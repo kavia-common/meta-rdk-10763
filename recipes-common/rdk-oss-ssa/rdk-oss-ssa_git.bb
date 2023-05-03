@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=19a2b3c39737289f92c7991b16599360"
 
 SRC_URI = "${RDK_COMPONENTS_ROOT_GIT}/rdkssa/generic;protocol=${RDK_GIT_PROTOCOL};branch=${RDK_GIT_BRANCH};name=rdk-oss-ssa"
 
-PV = "${RDK_RELEASE}"
+PV = "${RDK_RELEASE}+git${SRCPV}"
 SRCREV_rdk-oss-ssa = "${AUTOREV}"
 PROVIDES = "rdk-oss-ssa"
 RPROVIDES_${PN} = "rdk-oss-ssa"

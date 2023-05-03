@@ -6,6 +6,8 @@ PREFERRED_VERSION_icu ?= "64.1"
 PREFERRED_VERSION_icu-native ?= "64.1"
 PREFERRED_VERSION_icu_dunfell ?= "66.1"
 PREFERRED_VERSION_icu-native_dunfell ?= "66.1"
+PREFERRED_VERSION_icu_kirkstone ?= "70.1"
+PREFERRED_VERSION_icu-native_kirkstone ?= "70.1"
 
 PREFERRED_VERSION_curl ?= "7.60.0"
 PREFERRED_VERSION_curl-native ?= "7.60.0"
@@ -15,8 +17,11 @@ PREFERRED_VERSION_curl-native_dunfell ?= "7.69.1"
 PREFERRED_VERSION_openssl = "1.0.2o"
 PREFERRED_VERSION_openssl_dunfell = "1.1.1d"
 
-PREFERRED_VERSION_brotli = "1.0.7"
-PREFERRED_VERSION_brotli-native = "1.0.7"
+PREFERRED_VERSION_brotli_dunfell = "1.0.7"
+PREFERRED_VERSION_brotli-native_dunfell = "1.0.7"
+
+PREFERRED_VERSION_brotli_kirkstone = "1.0.9"
+PREFERRED_VERSION_brotli-native_kirkstone = "1.0.9"
 
 # Disabling Dunfell version of breakpad for timebeing due to DELIA-48240. Till issue is fixed morty version of breakpad will be used in dunfell builds.
 PREFERRED_VERSION_breakpad_dunfell = "${@bb.utils.contains('DISTRO_FEATURES', 'breakpadgit', 'git', 'svn', d)}"
@@ -64,7 +69,9 @@ DISTRO_FEATURES_append = " webconfig_bin"
 DISTRO_FEATURES_append = " rdm-versioning"
 
 PREFERRED_VERSION_bluez5_dunfell ?= "5.54"
-DISTRO_FEATURES_append_dunfell = " logendpoints"
+PREFERRED_VERSION_bluez5_kirkstone ?= "5.65"
+DISTRO_FEATURES_append = " logendpoints"
+DISTRO_FEATURES_remove_morty = " logendpoints"
 
 DISTRO_FEATURES_append = " tigress"
 # Masking recipes for CEDM multicall implementation in RDK-V
@@ -77,10 +84,17 @@ PREFERRED_VERSION_lighttpd = "1.4.53"
 
 PREFERRED_VERSION_cairo_daisy ?= "1.12.16"
 PREFERRED_VERSION_cairo_dunfell ?= "1.16.0"
+PREFERRED_VERSION_cairo_kirkstone ?= "1.16.0"
 #Downgrade the cairo version since 1.16.0 is having compatibility issues in Arm devices.
 PREFERRED_VERSION_cairo_dunfell_arm = "1.14.6"
 
 PREFERRED_VERSION_systemd_dunfell ?= "1:230%"
+
+PREFERRED_VERSION_mosquitto_dunfell = "1.6.%"
+PREFERRED_VERSION_mosquitto_kirkstone = "2.0.14"
+
+PREFERRED_VERSION_nodejs_kirkstone = "16.14.2"
+PREFERRED_VERSION_nodejs-native_kirkstone = "16.14.2"
 
 VOLATILE_BINDS_append = "/tmp/named.conf.options /etc/bind/named.conf.options\n"
 VOLATILE_BINDS_append = "/tmp/bind /var/cache/bind\n"
@@ -111,9 +125,20 @@ BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'ssl-1.1.1', '|.meta-rdk-ext/
 
 inherit ${@bb.utils.contains('DISTRO_FEATURES', 'sbom', 'create-spdx', '', d)}
 
-PREFERRED_VERSION_libcobalt ?= "22.lts.stable"
+PREFERRED_VERSION_libcobalt ?= "22.lts.stable*"
 PREFERRED_VERSION_libcobalt_morty = "21.lts.stable"
 
 
 #TR69Agent as distro
 DISTRO_FEATURES_append_client = " tr69agent"
+
+#Masking the below recipes because in kirkstone build recipes pulling older version due to layer priority
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-support/fcgi/fcgi_2.4.0.bb', '', d)}"
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-devtools/jsonrpc/jsonrpc_0.7.0.bb', '', d)}"
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-devtools/jsoncpp/jsoncpp_1.8.4.bb', '', d)}"
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-devtools/jsoncpp/jsoncpp_0.6.0-rc2.bb', '', d)}"
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-common/spawn-fcgi/spawn-fcgi_1.6.3.bb', '', d)}"
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-support/libev/libev_4.24.bb', '', d)}"
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-support/libtinyxml2/libtinyxml2_git.bb', '', d)}"
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-extended/procps/procps_3.3.12.bb', '', d)}"
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-devtools/doxygen/doxygen_1.7.6.1.bb', '', d)}"

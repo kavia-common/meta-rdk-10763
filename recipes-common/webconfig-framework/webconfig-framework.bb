@@ -7,7 +7,8 @@ DEPENDS = "rbus"
 DEPENDS_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'safec', ' safec', " ", d)}"
 DEPENDS_class-native = ""
 
-RDEPENDS_${PN}_append_dunfell = " bash"
+RDEPENDS_${PN}_append = " bash"
+RDEPENDS_${PN}_remove_morty = "bash"
 
 SRC_URI = "${RDK_GENERIC_ROOT_GIT}/WebconfigFramework/generic;protocol=${RDK_GIT_PROTOCOL};branch=${RDK_GIT_BRANCH}"
 
@@ -29,7 +30,7 @@ CFLAGS += " \
 
 CFLAGS += " -Wall -Werror -Wextra "
 
-CFLAGS_append_dunfell = " -Wno-restrict -Wno-format-truncation -Wno-format-overflow -Wno-cast-function-type -Wno-unused-function -Wno-implicit-fallthrough "
+CFLAGS_append = " -Wno-restrict -Wno-format-truncation -Wno-format-overflow -Wno-cast-function-type -Wno-unused-function -Wno-implicit-fallthrough "
 
 CFLAGS_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'webconfig_bin', '-DWEBCONFIG_BIN_SUPPORT', '', d)}"
 

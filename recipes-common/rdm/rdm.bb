@@ -16,7 +16,9 @@ SYSLOG-NG_DESTINATION_apps-rdm = "rdm_status.log"
 SYSLOG-NG_LOGRATE_apps-rdm = "low"
 
 DEPENDS = "curl openssl"
-RDEPENDS_${PN}_append_dunfell = "bash"
+RDEPENDS_${PN}_append = " bash"
+RDEPENDS_${PN}_remove_morty = "bash"
+
 INCLUDE_DIRS = " \
     -I${STAGING_INCDIR} \
     -I${STAGING_INCDIR}/openssl \
