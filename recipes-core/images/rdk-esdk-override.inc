@@ -13,3 +13,9 @@ python copy_buildsystem_append() {
         f.write('RDKROOT = "$' + '{TOPDIR}/layers" \n' )
 }
 
+#DVM logs for eSDK environment
+python copy_buildsystem_append() {
+    baseoutpath = d.getVar('SDK_OUTPUT') + '/' + d.getVar('SDKPATH')
+    with open(baseoutpath + '/conf/local.conf', 'a') as f:
+        f.write('INHERIT += "post-build" \n' )
+}
