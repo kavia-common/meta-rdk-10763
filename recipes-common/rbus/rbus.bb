@@ -4,9 +4,12 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ed63516ecab9f06e324238dd2b259549"
 
 SRC_URI = "git://github.com/rdkcentral/rbus.git;branch=rbus-2.0"
+SRC_URI_append = " file://gtest_libraries_check.patch"
 
 SRCREV = "v2.0.5"
 SRCREV_FORMAT = "base"
+
+PV = "${RDK_RELEASE}+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
@@ -24,8 +27,8 @@ EXTRA_OECMAKE += " ${@bb.utils.contains('DISTRO_FEATURES', 'gtestapp', '-DBUILD_
 DEPENDS_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'gtestapp', ' gtest benchmark ', ' ', d)}"
 
 #Dunfell Specific CFlags
-CFLAGS_append_dunfell = " -Wno-format-truncation "
-CXXFLAGS_append_dunfell = " -Wno-format-truncation "
+CFLAGS_append = " -Wno-format-truncation "
+CXXFLAGS_append = " -Wno-format-truncation "
 
 SYSLOG-NG_FILTER = "rbus"
 SYSLOG-NG_SERVICE_rbus = "rbus.service"

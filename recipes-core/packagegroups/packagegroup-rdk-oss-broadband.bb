@@ -3,6 +3,8 @@ SUMMARY = "Custom package group for OSS bits used in RDK-B"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
+PACKAGE_ARCH = "${TUNE_PKGARCH}"
+
 inherit packagegroup
 
 DEPENDS = "libnl"
@@ -17,7 +19,7 @@ RDEPENDS_packagegroup-rdk-oss-broadband = "\
     dibbler-client \
     dibbler-server \
     ${@bb.utils.contains("DISTRO_FEATURES", "kirkstone", "", "dhcp-client", d)} \
-    ${@bb.utils.contains("DISTRO_FEATURES", "kirkstone", "kea", "dhcp-server",  d)} \
+    ${@bb.utils.contains("DISTRO_FEATURES", "kirkstone", "", "dhcp-server",  d)} \
     ${@bb.utils.contains("DISTRO_FEATURES", "kirkstone", "",  "dhcp-server-config", d)} \
     dnsmasq \
     dropbear \
