@@ -3,7 +3,7 @@ Description= Apps Download Path
 OnFailure=path-fail-notifier@%n.service
 
 [Path]
-PathExists=/tmp/.xconfssrdownloadurl
+PathChanged=/tmp/.xconfssrdownloadurl
 Unit=apps-rdm.service
 
 [Install]
