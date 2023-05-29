@@ -33,6 +33,14 @@ python copy_buildsystem_append() {
             bblayers = bblayers.replace('    $' + '{SDKBASEMETAPATH}/layers/generic \\\n','')
             with open(baseoutpath + '/conf/bblayers.conf', 'w') as f:
                 f.write(bblayers)
+
+    #To do: The kernel compilation(do_prepare_image) creates stripped.bin and .dtb files in image folder. In ESDK, we are not recompiling the Kernel, and also to avoid recompiling we are copying it to destination path.
+    builddir = d.getVar('TOPDIR')
+    if "xle-wnc" in d.getVar('MACHINEOVERRIDES', True):
+        if os.path.exists(builddir + '/tmp/deploy/images/xle-wnc/vmlinux-xle-wnc.stripped.bin'):
+            bb.utils.mkdirhier(baseoutpath + '/tmp/deploy/images/xle-wnc')
+            shutil.copy(builddir + '/tmp/deploy/images/xle-wnc/vmlinux-xle-wnc.stripped.bin', baseoutpath + '/tmp/deploy/images/xle-wnc/vmlinux-xle-wnc.stripped.bin')
+            shutil.copy(builddir + '/tmp/deploy/images/xle-wnc/WNXL11BWL.dtb', baseoutpath + '/tmp/deploy/images/xle-wnc/WNXL11BWL.dtb')
 }
 
 #DVM logs for eSDK environment
