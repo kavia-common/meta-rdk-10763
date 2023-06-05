@@ -22,6 +22,12 @@
 DOWNLOAD_APP_MODULE=$1
 APPLN_HOME_PATH=/tmp
 APP_MOUNT_PATH=/media/apps
+SKIP_DOWNLOAD=0
+
+if [ -n "$2" ]; then
+     USB_RDM_PKG_FILE=$2
+     SKIP_DOWNLOAD=1
+fi
 
 if [ "$DEVICE_TYPE" = "broadband" ]; then
      RDM_DL_INFO=/nvram/persistent/rdmDownloadInfo.txt
@@ -36,8 +42,6 @@ DOWNLOAD_PKG_TYPE=`/usr/bin/jsonquery -f /etc/rdm/rdm-manifest.json  --path=//pa
 if [ -f /tmp/.rdm-apps-data/${DOWNLOAD_APP_MODULE}.conf ]; then
     source /tmp/.rdm-apps-data/${DOWNLOAD_APP_MODULE}.conf
 fi
-
-PACKAGER_ENABLED="$(tr181 Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.Packager.Enable 2>&1 > /dev/null)"
 
 if [ "x$IS_VERSIONED" == "xtrue" ]; then
     RDM_DOWNLOAD_SCRIPT=/etc/rdm/downloadVersionedApps.sh
@@ -130,13 +134,20 @@ fi
 
 echo "HOME PATH for APP = $APPLN_HOME_PATH"
 
+if [ $SKIP_DOWNLOAD -eq 1 ]; then
+    # Copy app signed tarball from usb to rdm download directory
+    echo "Copying $DOWNLOAD_APP_MODULE signed tarball from usb to $APPLN_APP_DL_PATH"
+    mkdir -p $APPLN_APP_DL_PATH
+    cp $USB_RDM_PKG_FILE $APPLN_APP_DL_PATH
+fi
+
 # Download the Package. If package already present on download path then skip the download
 # and perform the signature validation
 
 if [ "x$IS_VERSIONED" = "xtrue" ]; then
     time sh $RDM_DOWNLOAD_SCRIPT $DOWNLOAD_APP_NAME "$DOWNLOAD_PKG_VERSION"
 else
-    time sh $RDM_DOWNLOAD_SCRIPT $DOWNLOAD_APP_MODULE $APPLN_HOME_PATH openssl ipk ""
+    time sh $RDM_DOWNLOAD_SCRIPT $DOWNLOAD_APP_MODULE $APPLN_HOME_PATH openssl ipk "" $SKIP_DOWNLOAD
 fi
 
 RDM_STATUS=$?
@@ -145,7 +156,7 @@ if [ $RDM_STATUS -eq 3 ] && [ "$APPLN_HOME_PATH" == "$APP_MOUNT_PATH" ]; then
     # Download the package again from CDL server and do the validation.
     echo "Signature validation failed on pacakge which was already present on secondary storage."
     echo "Downalod new package from server."
-    time sh $RDM_DOWNLOAD_SCRIPT $DOWNLOAD_APP_MODULE $APPLN_HOME_PATH openssl ipk ""
+    time sh $RDM_DOWNLOAD_SCRIPT $DOWNLOAD_APP_MODULE $APPLN_HOME_PATH openssl ipk "" $SKIP_DOWNLOAD
     RDM_STATUS=$?
 fi
 
