@@ -2,7 +2,7 @@
 #This is imported by both hybrid and mediaclient video devices.
 #So all common code can be moved to this place.
 
-TOOLCHAIN_TARGET_TASK_append  =" breakpad-staticdev alsa-dev egl-headers"
+TOOLCHAIN_TARGET_TASK_append  =" ${MLPREFIX}breakpad-staticdev ${MLPREFIX}alsa-dev ${MLPREFIX}egl-headers"
 USER_PREFERRED_SDK_INSTALL_DIR = "./RNE-3.0"
 #changes made for populating SDK
 TOOLCHAIN_OUTPUTNAME="${MACHINE}-RNE-SDK-${SDK_VERSION}"
@@ -40,7 +40,7 @@ TOOLCHAIN_HOST_TASK_append_daisy = "\
    nativesdk-python-pkgutil \
    "
 TOOLCHAIN_HOST_TASK_append = " nativesdk-bison"
-TOOLCHAIN_TARGET_TASK_append  =" devicesettings-hal-headers rt-headers"
+TOOLCHAIN_TARGET_TASK_append  =" ${MLPREFIX}devicesettings-hal-headers ${MLPREFIX}rt-headers"
 
 #Rust SDK
 TOOLCHAIN_HOST_TASK_append = " ${@'packagegroup-rust-cross-canadian-${MACHINE}' if os.path.isfile('${RDKROOT}/meta-rust/conf/layer.conf') else ''}"
