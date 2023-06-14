@@ -47,11 +47,19 @@ RDEPENDS_${PN}_append_hybrid = " virtual/media-utils"
 RDEPENDS_${PN}_append_hybrid = " audiocapturemgr"
 
 
-inherit autotools pkgconfig systemd coverity syslog-ng-config-gen
+inherit autotools pkgconfig systemd coverity syslog-ng-config-gen logrotate
 SYSLOG-NG_FILTER = "btmgr"
 SYSLOG-NG_SERVICE_btmgr = "btmgr.service"
 SYSLOG-NG_DESTINATION_btmgr = "btmgrlog.txt"
 SYSLOG-NG_LOGRATE_btmgr = "very-high"
+
+LOGROTATE_NAME    = "btmgr"
+LOGROTATE_LOGNAME_btmgr = "btmgrlog.txt"
+LOGROTATE_SIZE_MEM_btmgr    = "250000"
+LOGROTATE_ROTATION_MEM_btmgr  = "2"
+LOGROTATE_SIZE_btmgr    = "512000"
+LOGROTATE_ROTATION_btmgr  = "5"
+
 
 ENABLE_AC_RMF = "--enable-ac_rmf=${@bb.utils.contains('RDEPENDS_${PN}', 'virtual/${MLPREFIX}media-utils', 'yes', 'no', d)}"
 ENABLE_ACM = "--enable-acm=${@bb.utils.contains('RDEPENDS_${PN}', '${MLPREFIX}audiocapturemgr', 'yes', 'no', d)}"

@@ -10,11 +10,20 @@ PV = "${RDK_RELEASE}+git${SRCPV}"
 DEPENDS = "rdk-logger cimplog"
 RDEPENDS_${PN} = "rdk-logger"
 
-inherit autotools pkgconfig systemd coverity syslog-ng-config-gen
+inherit autotools pkgconfig systemd coverity syslog-ng-config-gen logrotate
 SYSLOG-NG_FILTER = "cpuprocanalyzer"
 SYSLOG-NG_SERVICE_cpuprocanalyzer = "cpuprocanalyzer.service"
 SYSLOG-NG_DESTINATION_cpuprocanalyzer = "cpuprocanalyzer.log"
 SYSLOG-NG_LOGRATE_cpuprocanalyzer = "low"
+
+LOGROTATE_NAME="cpuprocanalyzer"
+LOGROTATE_LOGNAME_cpuprocanalyzer="cpuprocanalyzer.log"
+#HDD_ENABLE
+LOGROTATE_SIZE_cpuprocanalyzer="128000"
+LOGROTATE_ROTATION_cpuprocanalyzer="3"
+#HDD_DISABLE
+LOGROTATE_SIZE_MEM_cpuprocanalyzer="128000"
+LOGROTATE_ROTATION_MEM_cpuprocanalyzer="3"
 
 do_install_append() {
         install -d ${D}${systemd_unitdir}/system ${D}${sysconfdir}
