@@ -6,16 +6,32 @@ Upstream-Status: N/A
 Signed-off-by: Eugene Mutavchi <Ievgen_Mutavchi@comcast.com>
 
 ---
- WebKitBrowser/StateAwareMemoryObserver.h | 77 ++++++++++++++++++++++++
+ WebKitBrowser/CMakeLists.txt             |  4 ++
+ WebKitBrowser/StateAwareMemoryObserver.h | 80 ++++++++++++++++++++++++
  WebKitBrowser/WebKitBrowser.cpp          | 10 ++-
- 2 files changed, 86 insertions(+), 1 deletion(-)
+ 3 files changed, 86 insertions(+), 1 deletion(-)
  create mode 100644 WebKitBrowser/StateAwareMemoryObserver.h
 
+Index: git/WebKitBrowser/CMakeLists.txt
+===================================================================
+--- git.orig/WebKitBrowser/CMakeLists.txt
++++ git/WebKitBrowser/CMakeLists.txt
+@@ -195,6 +195,10 @@ add_library(${PLUGIN_WEBKITBROWSER_IMPLEMENTATION} SHARED
+     Tags.cpp
+     )
+ 
++if(DISABLE_STATEAWARE_MEMOBSEVER)
++    add_definitions(-DDISABLE_STATEAWARE_MEMOBSEVER=${DISABLE_STATEAWARE_MEMOBSEVER})
++endif()
++
+ if(NOT WEBKIT_GLIB_API)
+     target_sources(${PLUGIN_WEBKITBROWSER_IMPLEMENTATION} PRIVATE InjectedBundle/Utils.cpp)
+ endif()
 Index: git/WebKitBrowser/StateAwareMemoryObserver.h
 ===================================================================
 --- /dev/null
 +++ git/WebKitBrowser/StateAwareMemoryObserver.h
-@@ -0,0 +1,81 @@
+@@ -0,0 +1,84 @@
 +#pragma once
 +
 +namespace WPEFramework {
@@ -83,6 +99,9 @@ Index: git/WebKitBrowser/StateAwareMemoryObserver.h
 +
 +      static Exchange::IMemory* Wrap(Exchange::IMemory* memory)
 +      {
++#if DISABLE_STATEAWARE_MEMOBSEVER
++        return memory;
++#endif
 +        if (memory)
 +          return Core::Service<StateAwareMemoryObserver>::Create<Exchange::IMemory>(memory);
 +        return nullptr;
