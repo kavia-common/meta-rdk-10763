@@ -153,3 +153,5 @@ PREFERRED_VERSION_wpeframework =  "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_
 PREFERRED_VERSION_wpeframework-clientlibraries =  "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4', '4.2', '2.1', d)}"
 PREFERRED_VERSION_wpeframework-interfaces =  "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4', '4.2', '2.1', d)}"
 PREFERRED_VERSION_wpeframework-tools-native =  "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4', '4.2', '2.1', d)}"
+
+PREFERRED_VERSION_collectd ?= "5.12.0"
