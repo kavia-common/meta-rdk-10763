@@ -46,6 +46,7 @@ do_install_append_broadband() {
    install -m 0644 ${S}/conf/rbus_log.service ${D}${systemd_unitdir}/system
    install -m 0644 ${S}/conf/rbus_monitor.path ${D}${systemd_unitdir}/system
    install -m 0644 ${S}/conf/rbus_monitor.service ${D}${systemd_unitdir}/system
+   sed -i 's/PathExists/PathChanged/g' ${D}${systemd_unitdir}/system/rbus_monitor.path
 }
 
 do_install_append_hybrid() {
