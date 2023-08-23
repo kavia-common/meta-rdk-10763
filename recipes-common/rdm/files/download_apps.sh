@@ -139,6 +139,8 @@ if [ $SKIP_DOWNLOAD -eq 1 ]; then
     echo "Copying $DOWNLOAD_APP_MODULE signed tarball from usb to $APPLN_APP_DL_PATH"
     mkdir -p $APPLN_APP_DL_PATH
     cp $USB_RDM_PKG_FILE $APPLN_APP_DL_PATH
+
+    RDM_DOWNLOAD_SCRIPT="/etc/rdm/downloadMgr.sh"
 fi
 
 # Download the Package. If package already present on download path then skip the download
