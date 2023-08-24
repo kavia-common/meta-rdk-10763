@@ -213,13 +213,14 @@ fi
 
 (
 set +e
-#Hooks for selecting QT for SKY Platform
-qt5_hooks=$(ls -1 ../*{,/*}/conf/machine/sky-setup.sh 2>/dev/null)
-if [ -f "$qt5_hooks" ]; then
-     ./$qt5_hooks $MACHINE
+#Hooks for selecting build/layer configs for SKY Platforms
+_MACH_CONF_DIR=`dirname ${_MACH_CONF}`
+setup_hook="${_MACH_CONF_DIR}/sky-setup.sh"
+if [ -f "$setup_hook" ]; then
+     $setup_hook $MACHINE
 fi
 )
 
 # Since this script is sourced, be careful not to pollute caller's environment with temp variables
 unset -f usage
-unset _BUILDDIR _CONFIGS_FOUND _PWD_PREV _VALID_MACHINES _NCPU _BSP MACHINE _LAYERS _MACH_CONF _BSP_LAYER_REQUIRED _DISTRO_CODENAME
+unset _BUILDDIR _CONFIGS_FOUND _PWD_PREV _VALID_MACHINES _NCPU _BSP MACHINE _LAYERS _MACH_CONF _BSP_LAYER_REQUIRED _DISTRO_CODENAME _MACH_CONF_DIR
