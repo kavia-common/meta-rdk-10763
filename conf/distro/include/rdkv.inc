@@ -25,6 +25,10 @@ PREFERRED_VERSION_brotli-native_kirkstone = "1.0.9"
 
 PREFERRED_VERSION_libwebsockets_kirkstone = "4.2.2"
 
+PREFERRED_VERSION_heaptrack = "${@bb.utils.contains('DISTRO_FEATURES', 'enable_heaptrack', '1.4.0', '', d)}"
+PREFERRED_VERSION_libunwind =  "${@bb.utils.contains('DISTRO_FEATURES', 'enable_heaptrack', '1.7.0', '', d)}"
+
+
 # Disabling Dunfell version of breakpad for timebeing due to DELIA-48240. Till issue is fixed morty version of breakpad will be used in dunfell builds.
 PREFERRED_VERSION_breakpad_dunfell = "${@bb.utils.contains('DISTRO_FEATURES', 'breakpadgit', 'git', 'svn', d)}"
 PREFERRED_VERSION_breakpad-native_dunfell = "${@bb.utils.contains('DISTRO_FEATURES', 'breakpadgit', 'git', 'svn', d)}"
