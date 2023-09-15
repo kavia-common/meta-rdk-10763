@@ -25,7 +25,6 @@ INCLUDE_DIRS += "\
 	-I${PKG_CONFIG_SYSROOT_DIR}/usr/include/rdk/iarmmgrs/power \
 	-I${PKG_CONFIG_SYSROOT_DIR}/usr/include/rdk/iarmmgrs-hal \
 	-I${PKG_CONFIG_SYSROOT_DIR}/usr/include \
-	-I${PKG_CONFIG_SYSROOT_DIR}/usr/include/rdk/tr69agent \
 	"
 
 CPPFLAGS += "${INCLUDE_DIRS}"
