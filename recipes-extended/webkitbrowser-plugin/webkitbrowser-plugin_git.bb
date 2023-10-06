@@ -18,8 +18,8 @@ SRC_URI = "git://github.com/rdkcentral/rdkservices.git;protocol=git;branch=main 
   file://0009-Browser-Port-Thunder-R4-Support.patch;patchdir=../ \
 "
 
-# Tip of the main at Jul 28th, 2023
-SRCREV = "22c26179c26ea307fc8e9b732a3f43a3b12a3e12"
+# Tip of the main at Oct 05th, 2023
+SRCREV = "4c4caa2a75deeb87454bcd263f9fbd0b68973fd4"
 
 inherit cmake pkgconfig python3native
 
