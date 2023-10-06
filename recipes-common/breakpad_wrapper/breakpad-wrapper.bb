@@ -12,7 +12,7 @@ DEPENDS_hybrid += "breakpad"
 SRCREV_breakpad_wrapper = "${AUTOREV}"
 PV = "${RDK_RELEASE}+git${SRCPV}"
 
-S = "${WORKDIR}/git/"
+S = "${WORKDIR}/git"
 
 inherit autotools coverity
 
