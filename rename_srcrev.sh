@@ -41,8 +41,6 @@ if [ -f ${PWD}/../versions.conf ]; then
         sed -z -i 's+SRCREV_pn-rdk/components/generic/media_utils/generic+SRCREV_pn-media-utils-headers+' ${PWD}/../versions.conf
         sed -z -i 's+SRCREV_pn-rdk/components/thirdparty/dimark/tr69-4.4/devices/raspberrypi+SRCREV_pn-tr69hostif+' ${PWD}/../versions.conf
         sed -z -i 's+SRCREV_pn-rdk/components/thirdparty/dimark/tr69-4.4/devices/raspberrypi+SRCREV_pn-tr69hostif-headers+' ${PWD}/../versions.conf
-        sed -z -i 's+SRCREV_pn-rdk/components/thirdparty/dimark/tr69-4.4/generic+SRCREV_pn-tr69agent+' ${PWD}/../versions.conf
-        sed -z -i 's+SRCREV_pn-rdk/components/thirdparty/dimark/tr69-4.4/generic+SRCREV_pn-tr69agent-headers+' ${PWD}/../versions.conf
         sed -z -i 's+SRCREV_pn-rdk/components/generic/audioserver/generic+SRCREV_pn-audioserver+' ${PWD}/../versions.conf
         sed -z -i 's+SRCREV_pn-rdk/components/generic/audioserver/generic+SRCREV_pn-audioserver-headers+' ${PWD}/../versions.conf
         sed -z -i 's+SRCREV_pn-rdk/components/generic/audioserver/generic+SRCREV_pn-audioserver-sample-apps+' ${PWD}/../versions.conf
@@ -239,7 +237,6 @@ if [ -f ${PWD}/../versions.conf ]; then
         sed -i 's+SRCREV_pn-rdk/yocto_oe/layers/devicesettings-hal-sample+SRCREV_pn-devicesettings-hal-noop+g' ${PWD}/../versions.conf
         sed -i 's+SRCREV_pn-rdk/components/generic/lxc-container-generator+SRCREV_pn-lxc-container-generator-native+g' ${PWD}/../versions.conf
         sed -i 's+SRCREV_pn-rdk/components/generic/control/generic+SRCREV_pn-ctrlm-main+g' ${PWD}/../versions.conf
-        sed -i 's+SRCREV_pn-rdk/components/thirdparty/dimark/tr69-4.4/generic+SRCREV_pn-tr69agent+g' ${PWD}/../versions.conf
         sed -i 's+SRCREV_pn-rdk/components/generic/sysint/generic+SRCREV_pn-sysint+g' ${PWD}/../versions.conf
         sed -i 's+SRCREV_pn-rdk/components/generic/fog/generic+SRCREV_pn-fog+g' ${PWD}/../versions.conf
         sed -i 's+SRCREV_pn-rdk/components/cpc/firewall/generic+SRCREV_firewall_pn-sysint+g' ${PWD}/../versions.conf
@@ -348,7 +345,6 @@ if [ -f ${PWD}/../auto.conf ]; then
      sed -i 's/SRCREV_pn-wsproxy/SRCREV_wsproxy_pn-wsproxy/g'  ${PWD}/../auto.conf
      sed -i 's/SRCREV_pn-xupnp/SRCREV_xupnp_pn-xupnp/g'  ${PWD}/../auto.conf
      sed -i 's/SRCREV_pn-servicemanager/SRCREV_servicemanager_pn-servicemanager/g'  ${PWD}/../auto.conf
-     sed -i 's/SRCREV_pn-tr69agent /SRCREV_tr69generic_pn-tr69agent /g'  ${PWD}/../auto.conf
      sed -i 's/SRCREV_pn-gst-svp-ext/SRCREV_gst_pn-gst-svp-ext/g'  ${PWD}/../auto.conf
      sed -i 's/SRCREV_pn-ledmgr /SRCREV_generic_pn-ledmgr /g'  ${PWD}/../auto.conf
      sed -i 's/SRCREV_pn-crashlog/SRCREV_crashlog_pn-crashlog/g' ${PWD}/../auto.conf

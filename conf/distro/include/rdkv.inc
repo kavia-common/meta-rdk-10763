@@ -130,9 +130,6 @@ inherit ${@bb.utils.contains('DISTRO_FEATURES', 'sbom', 'create-spdx', '', d)}
 PREFERRED_VERSION_libcobalt_morty = "21.lts.stable"
 
 
-#TR69Agent as distro
-DISTRO_FEATURES_append_client = " tr69agent"
-
 # Guarding RDK-40652 with DISTRO
 DISTRO_FEATURES_append_dunfell = " systemd-journal-cache"
 
