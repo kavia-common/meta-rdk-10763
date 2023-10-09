@@ -4,7 +4,6 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/../meta-rdk/licenses/Apache-2.0;md5=3b83e
 
 SRC_URI = " \
            file://network@.service \
-           file://udhcpc@.service \
            file://network.rules \
            file://lan-iface@.service \
           "
