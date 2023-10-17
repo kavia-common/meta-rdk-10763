@@ -1,16 +1,16 @@
 diff --git a/WebKitBrowser/BrowserConsoleLog.h b/WebKitBrowser/BrowserConsoleLog.h
-index 7017253d..e6caa655 100644
+index 7017253d..c238905c 100644
 --- a/WebKitBrowser/BrowserConsoleLog.h
 +++ b/WebKitBrowser/BrowserConsoleLog.h
 @@ -20,7 +20,12 @@
  #ifndef __BROWSERCONSOLELOG_H
  #define __BROWSERCONSOLELOG_H
- 
+
 +#ifndef USE_THUNDER_R4
  #include <tracing/tracing.h>
 +#else
 +#include <messaging/messaging.h>
-+#endif /* USE_THUNDER_R4 */
++#endif
 +
  #ifndef WEBKIT_GLIB_API
  #include "InjectedBundle/Utils.h"
@@ -23,56 +23,60 @@ index 7017253d..e6caa655 100644
          const uint16_t maxStringLength = Trace::TRACINGBUFFERSIZE - 1;
 +#else
 +        const uint16_t maxStringLength = Messaging::MessageUnit::DataSize - 1;
-+#endif /* USE_THUNDER_R4 */
++#endif
          if (_text.length() > maxStringLength) {
              _text = _text.substr(0, maxStringLength);
          }
 @@ -46,7 +55,11 @@ public:
      BrowserConsoleLog(const string& prefix, const WKStringRef message, const uint64_t line, const uint64_t column)
-     { 
+     {
          _text = '[' + prefix + "][" + Core::NumberType<uint64_t>(line).Text() + ',' + Core::NumberType<uint64_t>(column).Text() + ']' + WebKit::Utils::WKStringToString(message);
 +#ifndef USE_THUNDER_R4
          const uint16_t maxStringLength = Trace::TRACINGBUFFERSIZE - 1;
 +#else
 +        const uint16_t maxStringLength = Messaging::MessageUnit::DataSize - 1;
-+#endif /* USE_THUNDER_R4 */
++#endif
          if (_text.length() > maxStringLength) {
              _text = _text.substr(0, maxStringLength);
          }
 diff --git a/WebKitBrowser/CMakeLists.txt b/WebKitBrowser/CMakeLists.txt
-index f8df78ff..8718f2ea 100644
+index 8d0ecf5b..fb570f8e 100644
 --- a/WebKitBrowser/CMakeLists.txt
 +++ b/WebKitBrowser/CMakeLists.txt
-@@ -181,6 +181,10 @@ find_package(CompileSettingsDebug CONFIG REQUIRED)
+@@ -228,6 +228,13 @@ find_package(CompileSettingsDebug CONFIG REQUIRED)
  find_package(WPEWebKit REQUIRED)
  find_package(WPEBackend REQUIRED)
- 
-+if (USE_THUNDER_R4)
+
++if (USE_THUNDER_R4_4)
++    add_definitions(-DUSE_THUNDER_R4_4)
 +    add_definitions(-DUSE_THUNDER_R4)
-+endif (USE_THUNDER_R4)
++elseif (USE_THUNDER_R4)
++    add_definitions(-DUSE_THUNDER_R4)
++endif ()
 +
  add_library(${MODULE_NAME} SHARED
      Module.cpp
      WebKitBrowser.cpp
 diff --git a/WebKitBrowser/Extension/Module.h b/WebKitBrowser/Extension/Module.h
-index d56663c0..d54ff167 100644
+index d56663c0..b88ea353 100644
 --- a/WebKitBrowser/Extension/Module.h
 +++ b/WebKitBrowser/Extension/Module.h
 @@ -25,7 +25,16 @@
- 
+
  #include <com/com.h>
  #include <core/core.h>
+-#include <tracing/tracing.h>
 +
 +#ifndef USE_THUNDER_R4
- #include <tracing/tracing.h>
++ #include <tracing/tracing.h>
 +#else
-+#include <messaging/messaging.h>
++ #include <messaging/messaging.h>
 +
 +#undef SYSLOG
 +#define SYSLOG TRACE_GLOBAL
 +
-+#endif /* USE_THUNDER_R4 */
- 
++#endif
+
  #undef EXTERNAL
  #define EXTERNAL
 diff --git a/WebKitBrowser/Extension/main.cpp b/WebKitBrowser/Extension/main.cpp
@@ -104,7 +108,7 @@ index 574226dc..9020b236 100644
  #include <tracing/tracing.h>
 +#else
 +#include <messaging/messaging.h>
-+#endif /* USE_THUNDER_R4 */
++#endif
  
  #undef EXTERNAL
  #define EXTERNAL
@@ -124,7 +128,7 @@ index e04d3bb5..7ae37554 100644
 +#undef SYSLOG
 +#define SYSLOG TRACE_GLOBAL
 +
-+#endif /* USE_THUNDER_R4 */
++#endif
 +
  #undef EXTERNAL
  #define EXTERNAL
@@ -152,7 +156,7 @@ index ebeffe17..79e901d0 100644
                  _cookieJar->Register(&_notification);
 +#ifndef USE_THUNDER_R4
                  Exchange::JBrowserCookieJar::Register(*this, _cookieJar);
-+#endif /* USE_THUNDER_R4 */
++#endif
              }
  
              _browserScripting = _browser->QueryInterface<Exchange::IBrowserScripting>();
@@ -162,7 +166,7 @@ index ebeffe17..79e901d0 100644
          if (_cookieJar) {
 +#ifndef USE_THUNDER_R4
              Exchange::JBrowserCookieJar::Unregister(*this);
-+#endif /* USE_THUNDER_R4 */
++#endif
              _cookieJar->Unregister(&_notification);
              _cookieJar->Release();
          }
@@ -175,7 +179,7 @@ index ebeffe17..79e901d0 100644
 +            if (!dir.Destroy(true))
 +#else
 +            if (!dir.Destroy())
-+#endif /* USE_THUNDER_R4 */
++#endif
 +            {
                  TRACE(Trace::Error, (_T("Failed to delete %s\n"), fullPath.c_str()));
                  result = Core::ERROR_GENERAL;
@@ -186,7 +190,7 @@ index ebeffe17..79e901d0 100644
      {
 +#ifndef USE_THUNDER_R4
          Exchange::JBrowserCookieJar::Event::CookieJarChanged(*this);
-+#endif /* USE_THUNDER_R4 */
++#endif
      }
  
      void WebKitBrowser::StateChange(const PluginHost::IStateControl::state state)
@@ -198,7 +202,7 @@ index ebeffe17..79e901d0 100644
 +        virtual bool IsOperational() const override
 +#else
          const bool IsOperational() const override
-+#endif /* USE_THUNDER_R4 */
++#endif
          {
              uint32_t requiredProcesses = 0;
  
@@ -214,7 +218,7 @@ index 7b1053ff..0564c84f 100644
              Core::IWorkerPool::Instance().Submit(Core::proxy_cast<Core::IDispatch>(Core::ProxyType<ExitJob>::Create()));
 +#else
 +            Core::IWorkerPool::Instance().Submit(Core::ProxyType<Core::IDispatch>(Core::ProxyType<ExitJob>::Create()));
-+#endif /* USE_THUNDER_R4 */
++#endif
          }
          static void closeCallback(VARIABLE_IS_NOT_USED WebKitWebView* webView, WebKitImplementation* browser)
          {

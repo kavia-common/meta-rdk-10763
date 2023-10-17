@@ -86,7 +86,7 @@ Index: git/WebKitBrowser/StateAwareMemoryObserver.h
 +      virtual bool IsOperational() const override
 +#else
 +      const bool IsOperational() const override
-+#endif /* USE_THUNDER_R4 */
++#endif
 +      {
 +        return _memory->IsOperational();
 +      }

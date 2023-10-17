@@ -16,6 +16,7 @@ SRC_URI = "git://github.com/rdkcentral/rdkservices.git;protocol=git;branch=main 
   file://0006-Introduce-state-aware-memory-observer.patch;patchdir=../ \
   file://0007-Launch-Metrics-data-collection.patch;patchdir=../ \
   file://0009-Browser-Port-Thunder-R4-Support.patch;patchdir=../ \
+  file://00010-R4.4.1-WebKitBrowser-compilationError.patch;patchdir=../ \
 "
 
 # Tip of the main at Dec 21, 2023
@@ -126,6 +127,7 @@ EXTRA_OECMAKE += " \
 "
 
 EXTRA_OECMAKE += "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4', ' -DUSE_THUNDER_R4=ON', '', d)}"
+EXTRA_OECMAKE += "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4_4', ' -DUSE_THUNDER_R4_4=ON', '', d)}"
 
 FILES_SOLIBSDEV = ""
 FILES_${PN} += "${libdir}/wpeframework/plugins/*.so ${libdir}/*.so ${datadir}/WPEFramework/*"
