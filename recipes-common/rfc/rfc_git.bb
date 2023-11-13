@@ -16,7 +16,7 @@ SRCREV_FORMAT = "rfc"
 export cjson_CFLAGS = "-I$(PKG_CONFIG_SYSROOT_DIR)${includedir}/cjson"
 export cjson_LIBS = "-lcjson"
 
-DEPENDS="cjson curl"
+DEPENDS="cjson curl rdk-logger"
 EXTRA_OEMAKE += "-e MAKEFLAGS="
 
 inherit autotools pkgconfig coverity
