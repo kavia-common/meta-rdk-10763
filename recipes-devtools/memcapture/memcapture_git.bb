@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1b8525f92b462b86205ffaba159b4481"
 
 SRC_URI = "git://github.com/RDKCentral/MemCapture.git;branch=main;name=src"
 SRC_URI_append = " git://${RDK_GIT}/rdk/component/generic/performancetool/generic;protocol=${RDK_GIT_PROTOCOL};branch=${RDK_GIT_BRANCH};subpath=memcapture;name=script"
-SRCREV_src = "159e5fdc9f9b6abe040e645f45529f23ed9daff0"
+SRCREV_src = "f7f888b2cb926874c27c4090c55f017e8e260b17"
 SRCREV_script = "${AUTOREV}"
 SRCREV_FORMAT = "src_script"
 
