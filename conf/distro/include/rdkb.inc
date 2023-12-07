@@ -153,6 +153,8 @@ DISTRO_FEATURES_append = " safec"
 DISTRO_FEATURES_append = " webui_jst"
 #DISTRO_FEATURES_append = " gtestapp"
 DISTRO_FEATURES_append = " redrecovery"
+# For Apparmor
+DISTRO_FEATURES_append = " apparmor"
 OPTIMIZE_DEFAULT = "-Os"
 
 #Masking the below recipes because in kirkstone build recipes pulling older version due to layer priority

@@ -30,6 +30,8 @@ BBMASK .= "|./meta-rdk/recipes-common/rdkversion/"
 BBMASK .= "|.meta-rdk/recipes-common/webconfig-framework/webconfig-framework.bb"
 
 DISTRO_FEATURES_remove = "zeroconf"
+# For Apparmor
+DISTRO_FEATURES_append = " apparmor"
 
 OPTIMIZE_DEFAULT = "-Os"
 
