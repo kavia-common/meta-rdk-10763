@@ -21,6 +21,9 @@
 # Image class responsible for invoking python container generator tool
 # responsible for container environment creation.
 # ------------------------------------------------------------------------------
+
+inherit python3native
+
 do_rootfs[depends] += "lxc-container-generator-native:do_populate_sysroot"
 
 SD_NOTIFY_SLEEP_US ??= ""
@@ -109,18 +112,18 @@ generate_containers_environment() {
 # NON SECURE CONTAINERS
         files="`find ${XML_CONF} -type f -a -name '*.xml'|sort -V`"
         if [ "$files" != "" ]; then
-                python ${TOOL} -r ${IMAGE_ROOTFS} $secure $shared_rootfs $common_options $files
+                python3 ${TOOL} -r ${IMAGE_ROOTFS} $secure $shared_rootfs $common_options $files
         fi
 
 # SECURE CONTAINERS
         files="`find ${XML_CONF_SECURE} -type f -a -name '*.xml' -a \! -name '*_DBUS*'|sort -V`"
         if [ "$files" != "" ]; then
-                python ${TOOL} -r ${IMAGE_ROOTFS} -s $shared_rootfs $common_options $files
+                python3 ${TOOL} -r ${IMAGE_ROOTFS} -s $shared_rootfs $common_options $files
         fi
         # DBUS does not start properly in container with a shared rootfs, so overrule this option here
         files="`find ${XML_CONF_SECURE} -type f -a -name '*.xml' -a -name '*_DBUS*'|sort -V`"
         if [ "$files" != "" ]; then
-                python ${TOOL} -r ${IMAGE_ROOTFS} -s                $common_options $files
+                python3 ${TOOL} -r ${IMAGE_ROOTFS} -s                $common_options $files
         fi
 
 }
