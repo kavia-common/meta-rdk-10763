@@ -48,6 +48,9 @@ PACKAGECONFIG[legacycomponents] = "-DLEGACY_COMPONENTS=ON,-DLEGACY_COMPONENTS=OF
 
 # -------------------------------------
 
+# Enable Hibernate Memcr implementation
+EXTRA_OECMAKE += "${@bb.utils.contains('DISTRO_FEATURES', 'RDKTV_APP_HIBERNATE', ' -DDOBBY_HIBERNATE_MEMCR_IMPL=ON','',d)}"
+
 # Add the systemd service
 SYSTEMD_SERVICE_${PN} = "dobby.service"
 
