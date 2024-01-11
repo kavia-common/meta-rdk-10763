@@ -9,10 +9,12 @@ SRC_URI += "file://msgq_receive.c"
 S = "${WORKDIR}"
 
 DEPENDS += "gcc-sanitizers"
-RDEPENDS_${PN} += "libasan"
-CFLAGS += "-fsanitize=address -fsanitize-recover=address -I${STAGING_EXECPREFIXDIR}/lib/gcc/${TARGET_SYS}/9.3.0/include"
-LDFLAGS += " -fsanitize=address -fsanitize-recover=address -lasan"
-CXXFLAGS += "-fsanitize=address -fsanitize-recover=address -I${STAGING_EXECPREFIXDIR}/lib/gcc/${TARGET_SYS}/9.3.0/include"
+RDEPENDS_${PN} += "${@bb.utils.contains('DISTRO_FEATURES', 'use_lsan', 'liblsan', 'libasan',d)}"
+CFLAGS += "${@bb.utils.contains('DISTRO_FEATURES', 'use_lsan','-fsanitize=leak ','-fsanitize=address -fsanitize-recover=address', d)}"
+CFLAGS_append_dunfell = "  -I${STAGING_EXECPREFIXDIR}/lib/gcc/${TARGET_SYS}/9.3.0/include"
+LDFLAGS += "${@bb.utils.contains('DISTRO_FEATURES', 'use_lsan','-fsanitize=leak -llsan','-fsanitize=address -fsanitize-recover=address -lasan', d)}"
+CXXFLAGS += "${@bb.utils.contains('DISTRO_FEATURES', 'use_lsan','-fsanitize=leak ','-fsanitize=address -fsanitize-recover=address', d)}"
+CXXFLAGS_append_dunfell = "  -I${STAGING_EXECPREFIXDIR}/lib/gcc/${TARGET_SYS}/9.3.0/include"
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 
