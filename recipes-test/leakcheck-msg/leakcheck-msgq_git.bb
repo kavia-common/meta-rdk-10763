@@ -1,8 +1,8 @@
 SUMMARY = "A simple message queue application"
 SECTION = "console/testapp"
-#LICENSE = "Apache-2.0"
-LICENSE = "CLOSED"
+LICENSE = "Apache-2.0"
 
+LIC_FILES_CHKSUM = "file://${COREBASE}/../meta-rdk/licenses/Apache-2.0;md5=3b83ef96387f14655fc854ddc3c6bd57"
 SRC_URI = "file://utility.c"
 SRC_URI += "file://msgq_receive.c"
 
@@ -14,6 +14,7 @@ CFLAGS += "-fsanitize=address -fsanitize-recover=address -I${STAGING_EXECPREFIXD
 LDFLAGS += " -fsanitize=address -fsanitize-recover=address -lasan"
 CXXFLAGS += "-fsanitize=address -fsanitize-recover=address -I${STAGING_EXECPREFIXDIR}/lib/gcc/${TARGET_SYS}/9.3.0/include"
 TARGET_CC_ARCH += "${LDFLAGS}"
+
 
 do_compile () {
     ${CC} utility.c -o leakCheck_utility -lpthread -lrt
