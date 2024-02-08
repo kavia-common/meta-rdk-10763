@@ -51,7 +51,6 @@ require include/webkitbrowser_properties.inc
 require include/webkitbrowser_memorylimits.${BROWSER_MEMORYPROFILE}.inc
 
 EXTRA_OECMAKE += " \
-    -DPYTHON_EXECUTABLE=${STAGING_BINDIR_NATIVE}/python3-native/python3 \
     -DCMAKE_SYSROOT=${STAGING_DIR_HOST} \
     -DBUILD_REFERENCE=${SRCREV} \
     -DBUILD_SHARED_LIBS=ON \
