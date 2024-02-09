@@ -7,7 +7,7 @@ PV = "${RDK_RELEASE}+git${SRCPV}"
 PR="0"
 
 SRC_URI = "${CMF_GIT_ROOT}/rdk/components/generic/lxc-container-generator;protocol=${CMF_GIT_PROTOCOL};branch=${CMF_GIT_MASTER_BRANCH};name=lxc-container-generator"
-SRCREV ?= "${AUTOREV}"
+SRCREV ?= "RDKV_2023Q4_DUNFELL"
 S = "${WORKDIR}/git"
 
 inherit native
