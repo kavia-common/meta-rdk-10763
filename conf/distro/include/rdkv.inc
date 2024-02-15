@@ -151,4 +151,7 @@ PREFERRED_VERSION_wpeframework-clientlibraries = "${@bb.utils.contains('DISTRO_F
 PREFERRED_VERSION_wpeframework-interfaces = "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4_4', '4.4%' , bb.utils.contains('DISTRO_FEATURES', 'wpe_r4', '4.2%', '2.1%', d), d)}"
 PREFERRED_VERSION_wpeframework-tools-native = "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4_4', '4.4%' , bb.utils.contains('DISTRO_FEATURES', 'wpe_r4', '4.2%', '2.1%', d), d)}"
 
+# For Apparmor
+DISTRO_FEATURES_append = " apparmor"
+
 PREFERRED_VERSION_collectd ?= "5.12.0"
