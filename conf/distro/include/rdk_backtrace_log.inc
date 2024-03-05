@@ -35,6 +35,7 @@ BACKTRACE_DEPENDS_pn-dnsmasq = " breakpad-wrapper"
 BACKTRACE_DEPENDS_pn-rdkfwupgrader = " breakpad-wrapper"
 BACKTRACE_DEPENDS_pn-cobaltlauncher = " breakpad-wrapper"
 BACKTRACE_DEPENDS_pn-libloader-app = " breakpad-wrapper"
+BACKTRACE_DEPENDS_pn-wpe-webkit = " breakpad-wrapper"
 
 BACKTRACE_LDFLAGS_pn-iarmbus = " -Wl,--no-as-needed -lbreakpadwrapper -Wl,--as-needed "
 BACKTRACE_LDFLAGS_pn-iarmmgrs = " -lbreakpadwrapper "
@@ -68,6 +69,7 @@ BACKTRACE_LDFLAGS_pn-asbluetoothrcu  = " -Wl,--no-as-needed -lbreakpadwrapper -W
 BACKTRACE_LDFLAGS_pn-dnsmasq = " -Wl,--no-as-needed -lbreakpadwrapper -Wl,--as-needed "
 BACKTRACE_LDFLAGS_pn-rdkfwupgrader = " -Wl,--no-as-needed -lbreakpadwrapper -Wl,--as-needed "
 BACKTRACE_LDFLAGS_pn-libloader-app = " -Wl,--no-as-needed -lbreakpadwrapper -Wl,--as-needed "
+BACKTRACE_LDFLAGS_pn-wpe-webkit = " -Wl,--no-as-needed -lbreakpadwrapper -Wl,--as-needed "
 
 BACKTRACE_DEPENDS_pn-busybox = " crashlog"
 BACKTRACE_DEPENDS_pn-lighttpd = " crashlog"
