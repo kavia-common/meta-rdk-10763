@@ -43,6 +43,7 @@ RDEPENDS_packagegroup-rdk-media-common = "\
     socat \
     rdkmediaplayer \
     ${@bb.utils.contains("DISTRO_FEATURES", "ledmgr", "ledmgr", "" , d)} \
+    dca \
     rbus \
     telemetry \
     webconfig-framework \
@@ -51,8 +52,6 @@ RDEPENDS_packagegroup-rdk-media-common = "\
 RDEPENDS_packagegroup-rdk-media-common_append_qemuall = " sysint "
 RDEPENDS_packagegroup-rdk-media-common_append_qemuall = " sysint-conf "
 RDEPENDS_packagegroup-rdk-media-common_append_rpi = " rdkmediaplayer "
-RDEPENDS_packagegroup-rdk-media-common_append_mipsel = " dca "
-RDEPENDS_packagegroup-rdk-media-common_append_arm = " dca "
 
 IMAGE_INSTALL_append_rpi = " e2fsprogs-mke2fs "
 
