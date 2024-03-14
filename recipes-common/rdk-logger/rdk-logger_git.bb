@@ -23,8 +23,8 @@ PACKAGECONFIG[systemd-syslog-helper] = "--enable-systemd-syslog-helper,,"
 #Milestone Support
 EXTRA_OECONF += " --enable-milestone"
 PROVIDES = "getClockUptime"
-CXXFLAGS_append_hybrid += " -DLOGMILESTONE"
-CXXFLAGS_append_client += " -DLOGMILESTONE"
+CFLAGS_append_hybrid += " -DLOGMILESTONE"
+CFLAGS_append_client += " -DLOGMILESTONE"
 
 inherit autotools pkgconfig coverity pkgconfig
 
