@@ -4,23 +4,22 @@ LIC_FILES_CHKSUM = "file://../LICENSE;md5=16cf2209d4e903e4d5dcd75089d7dfe2"
 
 PR = "r1"
 PV = "3.0+git${SRCPV}"
+PATCHTOOL = "git"
 
 S = "${WORKDIR}/git/WebKitBrowser"
 
 SRC_URI = "git://github.com/rdkcentral/rdkservices.git;protocol=git;branch=main \
   file://0001-RDKTV-177-Configure-wpeframework-plugin-startup-orde.patch;patchdir=../ \
-  ${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4', " ", " file://0002-Use-SYSLOG-instead-of-TRACE.patch;patchdir=../", d)} \
   file://0003-Increase-browser-creation-timeout.patch;patchdir=../ \
   file://0004-Reduce-BrowserConsoleLog.patch;patchdir=../ \
   file://0005-Enable-mixed-content.patch;patchdir=../ \
   file://0006-Introduce-state-aware-memory-observer.patch;patchdir=../ \
-  file://0007-Launch-Metrics-data-collection.patch;patchdir=../ \
-  file://0009-Browser-Port-Thunder-R4-Support.patch;patchdir=../ \
-  file://00010-R4.4.1-WebKitBrowser-compilationError.patch;patchdir=../ \
+  file://0007-Legacy-launch-metrics.patch;patchdir=../ \
+  file://0008-Thunder-upgrade-quirks.patch;patchdir=../ \
 "
 
-# Tip of the main at Apr 11, 2024
-SRCREV = "f4b6d95d646aa48e2e9937fcf0f7ec2abe741bc2"
+# Tip of the main at Jul 3, 2024
+SRCREV = "5457d09153c4f2ce7aba861d1238ce456f8a7816"
 
 inherit cmake pkgconfig python3native
 
@@ -43,7 +42,6 @@ PACKAGECONFIG[aampjsbindings]        = "-DPLUGIN_WEBKITBROWSER_AAMP_JSBINDINGS=O
 PACKAGECONFIG[badgerbridge]          = "-DPLUGIN_WEBKITBROWSER_BADGER_BRIDGE=ON,-DPLUGIN_WEBKITBROWSER_BADGER_BRIDGE=OFF,"
 PACKAGECONFIG[tzupdate]              = "-DPLUGIN_WEBKITBROWSER_UPDATE_TZ_FROM_FILE=ON,-DPLUGIN_WEBKITBROWSER_UPDATE_TZ_FROM_FILE=OFF,"
 PACKAGECONFIG[customprocessinfo]     = "-DPLUGIN_WEBKITBROWSER_CUSTOM_PROCESS_INFO=ON,-DPLUGIN_WEBKITBROWSER_CUSTOM_PROCESS_INFO=OFF,"
-PACKAGECONFIG[disable_stateaware_memobserver] = "-DDISABLE_STATEAWARE_MEMOBSEVER=1,,"
 
 BROWSER_MEMORYPROFILE ?= "default"
 
@@ -125,9 +123,6 @@ EXTRA_OECMAKE += " \
     -DPLUGIN_JSPP_WEBINSPECTOR_ADDRESS="${JSPP_WEBINSPECTOR_ADDRESS}" \
     -DPLUGIN_JSPP_LOCALSTORAGE_ENABLE="${JSPP_LOCALSTORAGE_ENABLE}" \
 "
-
-EXTRA_OECMAKE += "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4', ' -DUSE_THUNDER_R4=ON', '', d)}"
-EXTRA_OECMAKE += "${@bb.utils.contains('DISTRO_FEATURES', 'wpe_r4_4', ' -DUSE_THUNDER_R4_4=ON', '', d)}"
 
 FILES_SOLIBSDEV = ""
 FILES_${PN} += "${libdir}/wpeframework/plugins/*.so ${libdir}/*.so ${datadir}/WPEFramework/*"
