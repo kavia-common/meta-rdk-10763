@@ -1,20 +1,20 @@
-From 328d5340a75a7acbffd2d9019622a28dffa83704 Mon Sep 17 00:00:00 2001
+From 92da2c96b84e90b9c39009630b9fbe9922c163a5 Mon Sep 17 00:00:00 2001
 From: nganes961 <nambirajan_ganesan@comcast.com>
-Date: Wed, 22 Mar 2023 21:16:45 +0000
-Subject: [PATCH] Launch metrics
+Date: Wed, 27 Mar 2024 22:42:37 +0000
+Subject: [PATCH] Launch-Metrics-data-collection
 
 Signed-off-by: nganes961 <nambirajan_ganesan@comcast.com>
 ---
  WebKitBrowser/WebKitBrowser.cpp        |   3 +
  WebKitBrowser/WebKitBrowser.h          |   1 +
- WebKitBrowser/WebKitImplementation.cpp | 226 ++++++++++++++++++++++++-
- 3 files changed, 225 insertions(+), 5 deletions(-)
+ WebKitBrowser/WebKitImplementation.cpp | 230 ++++++++++++++++++++++++-
+ 3 files changed, 229 insertions(+), 5 deletions(-)
 
 diff --git a/WebKitBrowser/WebKitBrowser.cpp b/WebKitBrowser/WebKitBrowser.cpp
-index 3812a0cb..2e7f7686 100644
+index 3fd24535f..28f9257f9 100644
 --- a/WebKitBrowser/WebKitBrowser.cpp
 +++ b/WebKitBrowser/WebKitBrowser.cpp
-@@ -314,6 +314,7 @@ namespace Plugin {
+@@ -323,6 +323,7 @@ namespace Plugin {
      {
          string message(string("{ \"url\": \"") + URL + string("\", \"loaded\": ") + (loaded ? string("true") : string("false")) + string(" }"));
          TRACE(Trace::Information, (_T("URLChanged: %s"), message.c_str()));
@@ -22,7 +22,7 @@ index 3812a0cb..2e7f7686 100644
          _service->Notify(message);
          Exchange::JWebBrowser::Event::URLChange(*this, URL, loaded);
      }
-@@ -360,6 +361,8 @@ namespace Plugin {
+@@ -371,6 +372,8 @@ namespace Plugin {
      {
          if (connection->Id() == _connectionId) {
  
@@ -32,7 +32,7 @@ index 3812a0cb..2e7f7686 100644
  
              Core::IWorkerPool::Instance().Submit(PluginHost::IShell::Job::Create(_service, PluginHost::IShell::DEACTIVATED, PluginHost::IShell::FAILURE));
 diff --git a/WebKitBrowser/WebKitBrowser.h b/WebKitBrowser/WebKitBrowser.h
-index c2cad5f9..eeba30cc 100644
+index c2cad5f92..eeba30cc4 100644
 --- a/WebKitBrowser/WebKitBrowser.h
 +++ b/WebKitBrowser/WebKitBrowser.h
 @@ -285,6 +285,7 @@ namespace Plugin {
@@ -44,7 +44,7 @@ index c2cad5f9..eeba30cc 100644
  }
  }
 diff --git a/WebKitBrowser/WebKitImplementation.cpp b/WebKitBrowser/WebKitImplementation.cpp
-index d1d5954b..da3c8640 100644
+index 05246c561..b7f717bf2 100644
 --- a/WebKitBrowser/WebKitImplementation.cpp
 +++ b/WebKitBrowser/WebKitImplementation.cpp
 @@ -23,6 +23,8 @@
@@ -56,7 +56,7 @@ index d1d5954b..da3c8640 100644
  
  #include "Module.h"
  
-@@ -356,6 +358,17 @@ static GSourceFuncs _handlerIntervention =
+@@ -367,6 +369,17 @@ static GSourceFuncs _handlerIntervention =
          }
      }
  
@@ -74,7 +74,7 @@ index d1d5954b..da3c8640 100644
      class WebKitImplementation : public Core::Thread,
                                   public Exchange::IBrowser,
                                   public Exchange::IWebBrowser,
-@@ -822,6 +835,12 @@ static GSourceFuncs _handlerIntervention =
+@@ -903,6 +916,12 @@ static GSourceFuncs _handlerIntervention =
              , _unresponsiveReplyNum(0)
              , _frameCount(0)
              , _lastDumpTime(g_get_monotonic_time())
@@ -87,7 +87,7 @@ index d1d5954b..da3c8640 100644
          {
              // Register an @Exit, in case we are killed, with an incorrect ref count !!
              if (atexit(CloseDown) != 0) {
-@@ -1595,6 +1614,7 @@ static GSourceFuncs _handlerIntervention =
+@@ -1682,6 +1701,7 @@ static GSourceFuncs _handlerIntervention =
                          object->_adminLock.Unlock();
  
                          object->SetResponseHTTPStatusCode(-1);
@@ -95,7 +95,7 @@ index d1d5954b..da3c8640 100644
  #ifdef WEBKIT_GLIB_API
                          webkit_web_view_load_uri(object->_view, object->_URL.c_str());
  #else
-@@ -1603,6 +1623,13 @@ static GSourceFuncs _handlerIntervention =
+@@ -1690,6 +1710,13 @@ static GSourceFuncs _handlerIntervention =
                          WKPageLoadURL(object->_page, shellURL);
                          WKRelease(shellURL);
  #endif
@@ -109,7 +109,7 @@ index d1d5954b..da3c8640 100644
                          return G_SOURCE_REMOVE;
                      },
                      data,
-@@ -2004,6 +2031,14 @@ static GSourceFuncs _handlerIntervention =
+@@ -2091,6 +2118,14 @@ static GSourceFuncs _handlerIntervention =
              _adminLock.Lock();
  
              _URL = URL;
@@ -124,7 +124,7 @@ index d1d5954b..da3c8640 100644
              {
                  std::list<Exchange::IWebBrowser::INotification*>::iterator index(_notificationClients.begin());
  
-@@ -2034,6 +2069,7 @@ static GSourceFuncs _handlerIntervention =
+@@ -2121,6 +2156,7 @@ static GSourceFuncs _handlerIntervention =
                  index++;
              }
  
@@ -132,13 +132,17 @@ index d1d5954b..da3c8640 100644
              _adminLock.Unlock();
          }
          void OnStateChange(const PluginHost::IStateControl::state newState)
-@@ -2402,6 +2438,156 @@ static GSourceFuncs _handlerIntervention =
+@@ -2498,6 +2534,160 @@ static GSourceFuncs _handlerIntervention =
              return _consoleLogPrefix;
          }
  #endif
 +
 +        void collectMetricsOnLoadStart()
 +        {
++#if defined(THUNDER_VERSION) && THUNDER_VERSION == 4
++            _didLogLaunchMetrics = true;
++            return;
++#endif
 +            if (_didLogLaunchMetrics)
 +               return;
 +
@@ -250,7 +254,7 @@ index d1d5954b..da3c8640 100644
 +            metrics.Set("webProcessIdleTime", std::to_string(idleTime));
 +
 +            std::swap(_launchMetrics, metrics);
-+        }
++	}
 +
 +        void logLaunchMetrics()
 +        {
@@ -289,7 +293,7 @@ index d1d5954b..da3c8640 100644
          BEGIN_INTERFACE_MAP(WebKitImplementation)
          INTERFACE_ENTRY(Exchange::IWebBrowser)
          INTERFACE_ENTRY(Exchange::IBrowser)
-@@ -2480,6 +2666,10 @@ static GSourceFuncs _handlerIntervention =
+@@ -2576,6 +2766,10 @@ static GSourceFuncs _handlerIntervention =
  #endif
                          object->OnStateChange(PluginHost::IStateControl::SUSPENDED);
  
@@ -300,7 +304,7 @@ index d1d5954b..da3c8640 100644
                          TRACE_GLOBAL(Trace::Information, (_T("Internal Suspend Notification took %d mS."), static_cast<uint32_t>(Core::Time::Now().Ticks() - object->_time)));
  
                          object->CheckWebProcess();
-@@ -2856,6 +3046,10 @@ static GSourceFuncs _handlerIntervention =
+@@ -3024,6 +3218,10 @@ static GSourceFuncs _handlerIntervention =
  
              URL(static_cast<const string>(_URL));
  
@@ -311,7 +315,7 @@ index d1d5954b..da3c8640 100644
              // Move into the correct state, as requested
              auto* backend = webkit_web_view_backend_get_wpe_backend(webkit_web_view_get_backend(_view));
              _adminLock.Lock();
-@@ -3103,6 +3297,10 @@ static GSourceFuncs _handlerIntervention =
+@@ -3271,6 +3469,10 @@ static GSourceFuncs _handlerIntervention =
  
              URL(static_cast<const string>(_URL));
  
@@ -322,7 +326,7 @@ index d1d5954b..da3c8640 100644
              // Move into the correct state, as requested
              _adminLock.Lock();
              if ((_state == PluginHost::IStateControl::SUSPENDED) || (_state == PluginHost::IStateControl::UNINITIALIZED)) {
-@@ -3247,6 +3445,17 @@ static GSourceFuncs _handlerIntervention =
+@@ -3415,6 +3617,17 @@ static GSourceFuncs _handlerIntervention =
  #endif
          }
  
@@ -340,7 +344,7 @@ index d1d5954b..da3c8640 100644
          void DidReceiveWebProcessResponsivenessReply(bool isWebProcessResponsive)
          {
              if (_config.WatchDogHangThresholdInSeconds.Value() == 0 || _config.WatchDogCheckTimeoutInSeconds.Value() == 0)
-@@ -3264,15 +3473,11 @@ static GSourceFuncs _handlerIntervention =
+@@ -3432,15 +3645,11 @@ static GSourceFuncs _handlerIntervention =
              if (isWebProcessResponsive && _unresponsiveReplyNum == 0)
                  return;
  
@@ -357,7 +361,7 @@ index d1d5954b..da3c8640 100644
  #endif
  
              if (isWebProcessResponsive) {
-@@ -3395,6 +3600,17 @@ static GSourceFuncs _handlerIntervention =
+@@ -3563,6 +3772,17 @@ static GSourceFuncs _handlerIntervention =
          uint32_t _unresponsiveReplyNum;
          unsigned _frameCount;
          gint64 _lastDumpTime;
