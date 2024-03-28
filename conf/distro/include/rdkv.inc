@@ -107,6 +107,8 @@ PREFERRED_VERSION_cairo_dunfell ?= "1.16.0"
 PREFERRED_VERSION_cairo_kirkstone ?= "1.16.0"
 #Downgrade the cairo version since 1.16.0 is having compatibility issues in Arm devices.
 PREFERRED_VERSION_cairo_dunfell_arm = "1.14.6"
+#Enable cairo 1.16 just for llama (arm)
+PREFERRED_VERSION_cairo_dunfell_llama = "1.16.0"
 
 PREFERRED_VERSION_systemd_dunfell ?= "1:230%"
 
