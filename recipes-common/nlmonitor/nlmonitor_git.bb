@@ -61,3 +61,6 @@ SYSTEMD_SERVICE_${PN} = "nlmon.service"
 # Breakpad processname and logfile mapping
 BREAKPAD_LOGMAPPER_PROCLIST = "nlmon"
 BREAKPAD_LOGMAPPER_LOGLIST = "nlmon.log"
+
+PACKAGECONFIG += "rdklogger"
+PACKAGECONFIG[rdklogger] = "--enable-rdklogger,--disable-rdklogger,rdk-logger,rdk-logger"
