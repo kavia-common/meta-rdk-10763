@@ -63,6 +63,9 @@ CFLAGS_append =" ${@bb.utils.contains('RDEPENDS_${PN}', 'virtual/${MLPREFIX}medi
 ENABLE_RDK_LOGGER = "--enable-rdk-logger=${@bb.utils.contains('RDEPENDS_${PN}', '${MLPREFIX}rdk-logger', 'yes', 'no', d)}"
 EXTRA_OECONF += " ${ENABLE_RDK_LOGGER}"
 
+ENABLE_STREAMING_IN = "--enable-streaming-in=${@bb.utils.contains('DISTRO_FEATURES', 'btr_disable_streaming_in','no','yes',d)}"
+EXTRA_OECONF += " ${ENABLE_STREAMING_IN} "
+
 EXTRA_OECONF_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '--enable-systemd-notify', '', d)}"
 EXTRA_OECONF_append_client = " --enable-sys-diag"
 
