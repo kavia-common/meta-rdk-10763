@@ -19,8 +19,8 @@ SRC_URI = "git://github.com/rdkcentral/rdkservices.git;protocol=git;branch=main 
   file://00010-R4.4.1-WebKitBrowser-compilationError.patch;patchdir=../ \
 "
 
-# Tip of the main at Dec 21, 2023
-SRCREV = "f2854bade9e5c02a69138b8240869cf4037ad7f9"
+# Tip of the main at Apr 11, 2024
+SRCREV = "f4b6d95d646aa48e2e9937fcf0f7ec2abe741bc2"
 
 inherit cmake pkgconfig python3native
 
