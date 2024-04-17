@@ -99,7 +99,7 @@ BBMASK .= "${VLAN_MASK}"
 
 FEATURE_WANMANAGER_DSL_MASK ?= "|.meta-rdk-broadband/recipes-ccsp/ccsp/rdkxdslmanager.bb"
 BBMASK .= "${FEATURE_WANMANAGER_DSL_MASK}"
-FEATURE_WANMANAGER_WAN_MASK ?= "|.meta-rdk-broadband/recipes-ccsp/ccsp/rdk-wanmanager.bb"
+FEATURE_WANMANAGER_WAN_MASK ?= "|.meta-rdk-wan/recipes-ccsp/ccsp/rdk-wanmanager.bb"
 BBMASK .= "${FEATURE_WANMANAGER_WAN_MASK}"
 FEATURE_WANMANAGER_VLAN_MASK ?= "|.meta-rdk-broadband/recipes-ccsp/ccsp/rdk-vlanmanager.bb"
 BBMASK .= "${FEATURE_WANMANAGER_VLAN_MASK}"
