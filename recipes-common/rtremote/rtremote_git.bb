@@ -83,7 +83,8 @@ do_install () {
 
    mkdir -p ${D}${includedir}/pxcore
    install -m 0644 ${S}/include/rtRemote.h ${D}${includedir}/pxcore/
-   install -m 0644 ${S}/include/rtRemote.h ${D}${includedir}/
+   install -m 0644 ${S}/include/*.h ${D}${includedir}/
+
    cp -R ${S}/external/rapidjson/ ${D}${includedir}/pxcore/
 
    mkdir -p ${D}/etc
