@@ -25,6 +25,16 @@ PREFERRED_VERSION_brotli-native_kirkstone = "1.0.9"
 
 PREFERRED_VERSION_libwebsockets_kirkstone = "4.2.2"
 
+PREFERRED_VERSION_libstd-rs_kirkstone = "1.72.0"
+PREFERRED_VERSION_cargo_kirkstone = "1.72.0"
+PREFERRED_VERSION_cargo-native_kirkstone = "1.72.0"
+PREFERRED_VERSION_rust_kirkstone = "1.72.0"
+PREFERRED_VERSION_rust-native_kirkstone = "1.72.0"
+PREFERRED_VERSION_rust-llvm_kirkstone = "1.72.0"
+PREFERRED_VERSION_rust-llvm-native_kirkstone = "1.72.0"
+PREFERRED_VERSION_rust-cross-canadian_kirkstone = "1.72.0"
+PREFERRED_VERSION_rust-cross-canadian-native_kirkstone = "1.72.0"
+
 PREFERRED_VERSION_heaptrack = "${@bb.utils.contains('DISTRO_FEATURES', 'enable_heaptrack', '1.5.0', '', d)}"
 PREFERRED_VERSION_libunwind =  "${@bb.utils.contains('DISTRO_FEATURES', 'enable_heaptrack', '1.7.0', '', d)}"
 
