@@ -63,6 +63,10 @@ CFLAGS_append =" ${@bb.utils.contains('RDEPENDS_${PN}', 'virtual/${MLPREFIX}medi
 ENABLE_RDK_LOGGER = "--enable-rdk-logger=${@bb.utils.contains('RDEPENDS_${PN}', '${MLPREFIX}rdk-logger', 'yes', 'no', d)}"
 EXTRA_OECONF += " ${ENABLE_RDK_LOGGER}"
 
+# Autoconnect feature enabled
+ENABLE_AUTO_CONNECT = "--enable-autoconnectfeature=${@bb.utils.contains('DISTRO_FEATURES', 'btr_enable_auto_connect','yes','no',d)}"
+EXTRA_OECONF += " ${ENABLE_AUTO_CONNECT} "
+
 ENABLE_STREAMING_IN = "--enable-streaming-in=${@bb.utils.contains('DISTRO_FEATURES', 'btr_disable_streaming_in','no','yes',d)}"
 EXTRA_OECONF += " ${ENABLE_STREAMING_IN} "
 
