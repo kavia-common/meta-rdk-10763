@@ -68,7 +68,6 @@ RDEPENDS_packagegroup-rdk-ccsp-broadband = "\
     dca \
     telemetry \
     ${@bb.utils.contains("DISTRO_FEATURES", "gtestapp", "rdkbgmock", "", d)} \
-    ${@bb.utils.contains("DISTRO_FEATURES", "rfc-agent", "rfc-agent", "", d)} \
     webconfig-framework \
 	${@bb.utils.contains("DISTRO_FEATURES", "enable_rdkscheduler", "rdk-scheduler", "", d)} \
     ${@bb.utils.contains("DISTRO_FEATURES", "wifimotion", "wifimotion", "", d)} \
