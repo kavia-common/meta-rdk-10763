@@ -23,6 +23,10 @@ PREFERRED_VERSION_php-native ?= "7.2.%"
 PREFERRED_VERSION_php_dunfell ?= "7.4.%"
 PREFERRED_VERSION_php-native_dunfell ?= "7.4.%"
 
+PREFERRED_VERSION_glib-networking_kirkstone = "2.74.0"
+PREFERRED_VERSION_glib-2.0_kirkstone = "2.74.6"
+PREFERRED_VERSION_glib-2.0-native_kirkstone = "2.74.6"
+
 PREFERRED_VERSION_log4c = "1.2.3"
 PREFERRED_VERSION_net-snmp = "5.8"
 PREFERRED_VERSION_avro-c = "1.8.1"

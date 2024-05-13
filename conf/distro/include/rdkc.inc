@@ -5,6 +5,10 @@ PREFERRED_VERSION_nodejs = "0.10.38"
 PREFERRED_VERSION_nodejs-native = "0.10.38"
 PREFERRED_VERSION_smcroute = "2.0.0"
 
+PREFERRED_VERSION_glib-networking_kirkstone = "2.72.2"
+PREFERRED_VERSION_glib-2.0_kirkstone = "2.72.3"
+PREFERRED_VERSION_glib-2.0-native_kirkstone = "2.72.3"
+
 PREFERRED_VERSION_openssl = "1.1.0g"
 
 VOLATILE_BINDS_append = "/tmp/ccsp_msg.cfg /ccsp_msg.cfg\n"
