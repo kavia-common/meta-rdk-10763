@@ -134,6 +134,8 @@ inherit ${@bb.utils.contains('DISTRO_FEATURES', 'sbom', 'create-spdx', '', d)}
 
 # Guarding RDK-40652 with DISTRO
 DISTRO_FEATURES_append_dunfell = " systemd-journal-cache"
+#remove following line while upgrading to systemd to 250
+DISTRO_FEATURES_append_kirkstone = " systemd-journal-cache"
 
 #Masking the below recipes because in kirkstone build recipes pulling older version due to layer priority
 BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-support/fcgi/fcgi_2.4.0.bb', '', d)}"
