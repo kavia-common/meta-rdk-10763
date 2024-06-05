@@ -30,8 +30,8 @@ CFLAGS_append_kirkstone = " --sysroot=${RECIPE_SYSROOT}"
 EXTRA_OECMAKE =  " -DCMAKE_BUILD_TYPE=Debug -DBUILD_REFERENCE=${SRCREV}"
 
 # Enable plugins
-# Logging, networking, ipc, storage, minidump, oomcrash enabled by default for all builds
-PACKAGECONFIG ?= "logging networking ipc storage minidump oomcrash"
+# Logging, networking, ipc, storage, oomcrash enabled by default for all builds
+PACKAGECONFIG ?= "logging networking ipc storage oomcrash"
 
 # Options for plugins
 # -------------------------------------
