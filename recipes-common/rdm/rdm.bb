@@ -9,11 +9,18 @@ SRCREV_rdmgeneric = "${AUTOREV}"
 SRCREV_FORMAT = "rdmgeneric"
 S = "${WORKDIR}/git"
 
-inherit autotools coverity systemd syslog-ng-config-gen
+inherit autotools coverity systemd syslog-ng-config-gen logrotate
 SYSLOG-NG_FILTER = "apps-rdm"
 SYSLOG-NG_SERVICE_apps-rdm = "apps-rdm.service"
 SYSLOG-NG_DESTINATION_apps-rdm = "rdm_status.log"
 SYSLOG-NG_LOGRATE_apps-rdm = "low"
+
+LOGROTATE_NAME="rdm_status"
+LOGROTATE_LOGNAME_rdm_status="rdm_status.log"
+LOGROTATE_SIZE_rdm_status="1572864"
+LOGROTATE_ROTATION_rdm_status="3"
+LOGROTATE_SIZE_MEM_rdm_status="1572864"
+LOGROTATE_ROTATION_MEM_rdm_status="3"
 
 DEPENDS = "curl openssl"
 RDEPENDS_${PN}_append = " bash"

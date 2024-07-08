@@ -19,12 +19,18 @@ addtask do_patch_new after do_configure before do_compile
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig cmake systemd
+inherit pkgconfig cmake systemd logrotate
 #dobby logs storage file is decided using device.properties. syslog-ng-config-gen framework decide the log file.
 
 #config.h file generation for kirkstone builds
 DEPENDS_append_kirkstone = " autoconf-native automake-native "
 CFLAGS_append_kirkstone = " --sysroot=${RECIPE_SYSROOT}"
+LOGROTATE_NAME="dobby"
+LOGROTATE_LOGNAME_dobby="dobby.log"
+LOGROTATE_SIZE_dobby="1572864"
+LOGROTATE_ROTATION_dobby="3"
+LOGROTATE_SIZE_MEM_dobby="1572864"
+LOGROTATE_ROTATION_MEM_dobby="3"
 
 # Always build debug version for now
 EXTRA_OECMAKE =  " -DCMAKE_BUILD_TYPE=Debug -DBUILD_REFERENCE=${SRCREV}"

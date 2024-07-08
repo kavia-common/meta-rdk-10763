@@ -13,7 +13,7 @@ PV = "${RDK_RELEASE}+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
-inherit cmake systemd pkgconfig coverity syslog-ng-config-gen
+inherit cmake systemd pkgconfig coverity syslog-ng-config-gen logrotate
 DEPENDS = "cjson msgpack-c rdk-logger linenoise"
 
 
@@ -34,6 +34,13 @@ SYSLOG-NG_FILTER = "rbus"
 SYSLOG-NG_SERVICE_rbus = "rbus.service"
 SYSLOG-NG_DESTINATION_rbus = "rtrouted.log"
 SYSLOG-NG_LOGRATE_rbus = "medium"
+
+LOGROTATE_NAME="rbus"
+LOGROTATE_LOGNAME_rbus="rtrouted.log"
+LOGROTATE_SIZE_rbus="1572864"
+LOGROTATE_ROTATION_rbus="3"
+LOGROTATE_SIZE_MEM_rbus="1572864"
+LOGROTATE_ROTATION_MEM_rbus="3"
 
 do_install_append() {
    install -d ${D}${systemd_unitdir}/system
