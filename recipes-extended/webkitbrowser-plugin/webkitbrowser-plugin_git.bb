@@ -18,8 +18,8 @@ SRC_URI = "git://github.com/rdkcentral/rdkservices.git;protocol=git;branch=main 
   file://0008-Thunder-upgrade-quirks.patch;patchdir=../ \
 "
 
-# Tip of the main at Jul 3, 2024
-SRCREV = "5457d09153c4f2ce7aba861d1238ce456f8a7816"
+# Tip of the main at Jul 30, 2024
+SRCREV = "deb75be5f7c63e2532003ffc891232eeabbc022b"
 
 inherit cmake pkgconfig python3native
 
