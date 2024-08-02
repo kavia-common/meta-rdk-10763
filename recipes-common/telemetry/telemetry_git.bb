@@ -50,7 +50,11 @@ do_install_append () {
     install -m 644 ${S}/include/telemetry_busmessage_sender.h ${D}/usr/include/
     install -m 644 ${S}/include/telemetry2_0.h ${D}/usr/include/
     install -m 0755 ${S}/source/commonlib/t2Shared_api.sh ${D}/lib/rdk
-    rm -fr ${D}/usr/lib/libtelemetry_msgsender.la 
+    rm -fr ${D}/usr/lib/libtelemetry_msgsender.la
+
+    if ${@bb.utils.contains('DISTRO_FEATURES', 't2_without_webconfig', 'true', 'false', d)}; then
+        install -m 0755 ${S}/source/commonlib/download_t2_profile.sh ${D}/lib/rdk
+    fi
 }
 
 FILES_${PN} = "\
