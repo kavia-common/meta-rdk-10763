@@ -36,8 +36,8 @@ LOGROTATE_ROTATION_MEM_dobby="3"
 EXTRA_OECMAKE =  " -DCMAKE_BUILD_TYPE=Debug -DBUILD_REFERENCE=${SRCREV}"
 
 # Enable plugins
-# Logging, networking, ipc, storage, oomcrash enabled by default for all builds
-PACKAGECONFIG ?= "logging networking ipc storage oomcrash"
+# Logging, networking, ipc, storage, minidump, oomcrash enabled by default for all builds
+PACKAGECONFIG ?= "logging networking ipc storage minidump oomcrash"
 
 # Options for plugins
 # -------------------------------------
