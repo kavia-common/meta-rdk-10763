@@ -33,8 +33,7 @@ RDEPENDS_packagegroup-rdk-ccsp-broadband = "\
     ccsp-mta-agent \
     ccsp-mta-agent-ccsp \
     ccsp-p-and-m \
-    ccsp-moca \
-    ccsp-moca-ccsp \
+    ${@bb.utils.contains("DISTRO_FEATURES", "no_moca_support", "", "ccsp-moca ccsp-moca-ccsp", d)} \
     ccsp-p-and-m-ccsp \
     ccsp-psm \
     ccsp-psm-ccsp \
@@ -55,7 +54,7 @@ RDEPENDS_packagegroup-rdk-ccsp-broadband = "\
     hal-cm \
     hal-dhcpv4c \
     hal-ethsw \
-    hal-moca \
+    ${@bb.utils.contains("DISTRO_FEATURES", "no_moca_support", "", "hal-moca", d)} \
     hal-mso_mgmt \
     hal-mta \
     hal-platform \
