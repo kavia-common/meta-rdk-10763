@@ -175,3 +175,5 @@ PREFERRED_VERSION_wpeframework-tools-native = "${@bb.utils.contains('DISTRO_FEAT
 DISTRO_FEATURES_append = " apparmor"
 
 PREFERRED_VERSION_collectd ?= "5.12.0"
+
+PREFERRED_VERSION_dnsmasq_kirkstone = "2.86"
