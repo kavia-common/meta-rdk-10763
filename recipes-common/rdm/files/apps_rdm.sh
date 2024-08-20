@@ -130,6 +130,7 @@ else
         APP_DL_STATUS=$?
         echo "Download of $APP App completed with status=$APP_DL_STATUS"
     fi
+    exit $APP_DL_STATUS
 fi
 
 updatePkgStatus()
