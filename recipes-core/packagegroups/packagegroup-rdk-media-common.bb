@@ -57,3 +57,8 @@ IMAGE_INSTALL_append_rpi = " e2fsprogs-mke2fs "
 
 #package for firebolt-test-client
 RDEPENDS_packagegroup-rdk-media-common += " ${@bb.utils.contains('DISTRO_FEATURES', 'firebolt_test_client', 'firebolt-test-client', '', d)}"
+
+RDEPENDS_packagegroup-rdk-media-common_remove += "\
+ ${@bb.utils.contains('DISTRO_FEATURES', 'enable_libsoup3', 'nghttp2-server', '', d)} \
+ ${@bb.utils.contains('DISTRO_FEATURES', 'enable_libsoup3', 'nghttp2-common', '', d)} \
+"

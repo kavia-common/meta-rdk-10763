@@ -182,3 +182,7 @@ DISTRO_FEATURES_append = " maintenance_journal_logging"
 PREFERRED_VERSION_collectd ?= "5.12.0"
 
 PREFERRED_VERSION_dnsmasq_kirkstone = "2.90"
+
+DISTRO_FEATURES_append = " enable_libsoup3"
+# yocto2 'morty' doesn't support libsoup3 dependencies
+DISTRO_FEATURES_remove_morty = " enable_libsoup3"

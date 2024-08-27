@@ -1,0 +1,11 @@
+PREFERRED_VERSION_meson-native_dunfell = "0.55.1"
+PREFERRED_VERSION_nghttp2 = "1.48.0"
+PREFERRED_VERSION_libpsl = "0.21.1"
+PREFERRED_VERSION_glib-2.0_dunfell = "2.72.3"
+PREFERRED_VERSION_glib-2.0-native_dunfell = "2.72.3"
+PREFERRED_VERSION_nativesdk-glib-2.0_dunfell = "2.72.3"
+
+BBMASK .= "|.meta-rdk-ext/recipes-core/glib-openssl/glib-openssl_2.50.3.bb"
+BBMASK .= "|.meta-rdk-ext/recipes-support/nghttp2/nghttp2_1.31.1.bb"
+BBMASK .= "|.meta-rdk-ext/recipes-core/glib-networking/glib-networking_2.48.*"
+BBMASK .= "${@bb.utils.contains('DISTRO_FEATURES', 'kirkstone', '|.meta-rdk-ext/recipes-devtools/meson/meson_0.55.1.bb', '', d)}"
