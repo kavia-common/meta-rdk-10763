@@ -15,7 +15,7 @@ S = "${WORKDIR}/git"
 DEPENDS = "glib-2.0 gupnp fcgi dbus gnutls libgcrypt"
 FILES_${PN} += "${libdir}/"
 
-CFLAGS += " -Wall -Werror -Wextra -Wno-pointer-sign -Wno-sign-compare -Wno-deprecated-declarations -Wno-type-limits -Wno-unused-parameter -Wno-lto-type-mismatch -fcommon"
+CFLAGS += " -Wall -Werror -Wextra -Wno-pointer-sign -Wno-sign-compare -Wno-deprecated-declarations -Wno-type-limits -Wno-unused-parameter -Wno-lto-type-mismatch"
 
 DEPENDS = "glib-2.0 gupnp fcgi dbus gnutls rdk-logger libgcrypt libgpg-error "
 RDEPENDS_${PN} += "gnutls"
