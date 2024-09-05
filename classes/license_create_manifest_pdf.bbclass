@@ -184,17 +184,21 @@ def license_create_pdf(d):
                 # GPL-*-exception licenses in openembedded-core does not have the parent license text
                 # following is added to update pdf with parent license text
                 if li.strip() in ['insert GPL v2 license text here', 'insert GPL v2 text here']:
-                    gplv2File=codecs.open(os.path.join(d.getVar('COREBASE', True), 'meta/files/common-licenses/GPL-2.0'), 'r', encoding='utf8', errors='ignore')
-                    gplv2text=gplv2File.readlines()
-                    for gplv2line in gplv2text:
-                        story.append(Paragraph(gplv2line, styleSheet['BodyText']))
-                    gplv2File.close()
+                    gplv2File=os.path.join(d.getVar('COREBASE', True), 'meta/files/common-licenses/GPL-2.0')
+                    if os.path.isfile(gplv2File):
+                        gplv2FileOpen=codecs.open(gplv2File, 'r', encoding='utf8', errors='ignore')
+                        gplv2text=gplv2FileOpen.readlines()
+                        for gplv2line in gplv2text:
+                            story.append(Paragraph(gplv2line, styleSheet['BodyText']))
+                        gplv2FileOpen.close()
                 elif li.strip() in ['insert GPL v3 text here']:
-                    gplv3File=codecs.open(os.path.join(d.getVar('COREBASE', True), 'meta/files/common-licenses/GPL-3.0'), 'r', encoding='utf8')
-                    gplv3text=gplv3File.readlines()
-                    for gplv3line in gplv3text:
-                        story.append(Paragraph(gplv3line, styleSheet['BodyText']))
-                    gplv3File.close()
+                    gplv3File=os.path.join(d.getVar('COREBASE', True), 'meta/files/common-licenses/GPL-3.0')
+                    if os.path.isfile(gplv3File):
+                        gplv3FileOpen=codecs.open(gplv3File, 'r', encoding='utf8')
+                        gplv3text=gplv3FileOpen.readlines()
+                        for gplv3line in gplv3text:
+                            story.append(Paragraph(gplv3line, styleSheet['BodyText']))
+                        gplv3FileOpen.close()
                 else:
                     story.append(Paragraph(li, styleSheet['BodyText']))
             licFile.close()
