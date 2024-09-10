@@ -27,6 +27,7 @@ TOOLCHAIN = "gcc"
 
 DEPENDS += "wpeframework wpeframework-tools-native ${WPEWEBKIT}"
 DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'enable_libsoup3', 'libsoup', 'libsoup-2.4', d)}"
+RRECOMMENDS_${PN} += "webkitbrowser-cache-cleanup"
 
 PACKAGECONFIG ??= "residentapp searchanddiscoveryapp htmlapp lightningapp aampjsbindings badgerbridge customprocessinfo"
 
