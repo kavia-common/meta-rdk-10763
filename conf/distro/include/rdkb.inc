@@ -66,7 +66,7 @@ DISTRO_FEATURES_append_dunfell = " logendpoints"
 
 DISTRO_FEATURES_append = " tigress"
 #Masking cedm multicall implementation in RDK-B
-BBMASK .= "|.cpgu-src|.cpgu-pbt|.cpgc-src|.cpgc-pbt"
+BBMASK .= " .cpgu-src|.cpgu-pbt|.cpgc-src|.cpgc-pbt"
 
 PREFERRED_VERSION_cjson_kirkstone = "1.7.15"
 PREFERRED_PROVIDER_xfhome ?= "zilker"
