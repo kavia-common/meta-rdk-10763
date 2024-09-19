@@ -20,6 +20,7 @@ IMAGE_INSTALL_append += " \
     breakpad-staticdev \
     perl \
     "
+#   perl-module-base 
 
 ROOTFS_POSTPROCESS_COMMAND += "add_systemd_services; "
 
