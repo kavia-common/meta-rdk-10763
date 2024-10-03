@@ -65,6 +65,8 @@ python create_version_file() {
         fw.write('VERSION={0}\n'.format(release_version))
         fw.write('SPIN={0}\n'.format(release_spin))
         fw.write('BUILD_TIME={0}\n'.format(build_time))
+        fw.write('JENKINS_JOB=Default\n')
+        fw.write('JENKINS_BUILD_NUMBER=0\n')
         for version_string in extra_versions:
             fw.write("{0}\n".format(version_string.strip('\n')))
         fw.write('{0}\n'.format(gen_time))
