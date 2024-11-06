@@ -103,3 +103,4 @@ COVERITY_BLACKLIST_PATH += "avro-c | graphite2 | zilker | wdmp-c | ctrlm-testapp
 COVERITY_BLACKLIST_PATH += "netflix-src | dtcpmgr | qtbase | syslog-helper | linux-meson | mediarite | quilt-native"
 COVERITY_BLACKLIST_PATH += "wave-api | meta-wave | meta-sky-qt5"
 COVERITY_BLACKLIST_PATH += "asappsserviced-debug | asappsserviced-release | asappsserviced"
+COVERITY_BLACKLIST_PATH += "rdk-wifi-emulator-hal"
