@@ -159,6 +159,9 @@ DISTRO_FEATURES_append = " webui_jst"
 DISTRO_FEATURES_append = " redrecovery"
 # For Apparmor
 DISTRO_FEATURES_append = " apparmor"
+# Add apparmor_earlypolicy.bbclass
+DISTRO_FEATURES_append = " apparmor_segmented_global"
+
 OPTIMIZE_DEFAULT = "-Os"
 
 # Disabling MoCA support
