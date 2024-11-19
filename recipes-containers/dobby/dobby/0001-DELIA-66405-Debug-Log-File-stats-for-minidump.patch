@@ -1,0 +1,65 @@
+From 4367bc48818ed207be44583a506ea670f26c6f66 Mon Sep 17 00:00:00 2001
+From: schall488 <shivabhaskar_challa@comcast.com>
+Date: Tue, 19 Nov 2024 16:25:35 +0000
+Subject: [PATCH] DELIA-66405: Debug Log File stats for minidump
+
+---
+ rdkPlugins/Minidump/source/AnonymousFile.cpp | 28 ++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/rdkPlugins/Minidump/source/AnonymousFile.cpp b/rdkPlugins/Minidump/source/AnonymousFile.cpp
+index 972ea6c..ffe9f9d 100644
+--- a/rdkPlugins/Minidump/source/AnonymousFile.cpp
++++ b/rdkPlugins/Minidump/source/AnonymousFile.cpp
+@@ -26,6 +26,10 @@
+ #include <sys/types.h>
+ #include <unistd.h>
+ 
++
++#include <sys/stat.h>
++#include <cstring>
++
+ // some platforms are missing the memfd headers
+ // #include <linux/memfd.h>
+ #if !defined(MFD_CLOEXEC)
+@@ -118,6 +122,18 @@ bool AnonymousFile::copyContentTo(const std::string& destFile)
+         return false;
+     }
+ 
++    struct stat file_stat;
++    if (fstat(mFd, &file_stat) != -1) {
++	AI_LOG_INFO("Minidump in the Memory");
++	AI_LOG_INFO("Error getting file stats: %s",strerror(errno));
++	AI_LOG_INFO("File Size: %ld bytes", file_stat.st_size);
++	AI_LOG_INFO("Number of Links: %ld", file_stat.st_nlink);
++	AI_LOG_INFO("File inode: %ld", file_stat.st_ino);
++	AI_LOG_INFO("File last access: %ld", file_stat.st_atime);
++	AI_LOG_INFO("File last modification: %ld", file_stat.st_mtime);
++	AI_LOG_INFO("File last change: %ld", file_stat.st_ctime);
++    }
++
+     // it turns out that fclose(fp) will do effectively the same job as close(fd)
+     // therefore this guy will not be fclose'd in here, but rather reset by nullptr value
+     // mind that closing related fd will be accomplished by DobbyStartState destructor
+@@ -178,6 +194,18 @@ bool AnonymousFile::copyContentTo(const std::string& destFile)
+ 
+     write(destFd, buffer, fileSize + 1);
+ 
++
++    if (fstat(destFd, &file_stat) != -1) {
++	AI_LOG_INFO("Destination Logs File %s",destFile.c_str());
++	AI_LOG_INFO("Error getting file stats: %s",strerror(errno));
++	AI_LOG_INFO("File Size: %ld bytes", file_stat.st_size);
++	AI_LOG_INFO("Number of Links: %ld", file_stat.st_nlink);
++	AI_LOG_INFO("File inode: %ld", file_stat.st_ino);
++	AI_LOG_INFO("File last access: %ld", file_stat.st_atime);
++	AI_LOG_INFO("File last modification: %ld", file_stat.st_mtime);
++	AI_LOG_INFO("File last change: %ld", file_stat.st_ctime);
++    }
++
+     fp = nullptr;
+     free(buffer);
+     close(destFd);
+-- 
+2.25.1
+

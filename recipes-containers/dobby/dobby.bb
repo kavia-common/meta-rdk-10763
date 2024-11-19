@@ -8,6 +8,9 @@ SRC_URI_append_kirkstone = " file://Fix_compile_gcc11.patch  \
                              file://Add_config_header_kirkstone.patch \
                            "
 
+#Add the patch DELIA-66405
+SRC_URI_append = " file://0001-DELIA-66405-Debug-Log-File-stats-for-minidump.patch "
+
 DEPENDS = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', ' systemd ', '', d)} libnl dbus jsoncpp boost yajl python3 breakpad breakpad-wrapper "
 RDEPENDS_${PN} = "crun (>= 0.14.1) ${@bb.utils.contains('DISTRO_FEATURES', 'dac', '', ' dobby-thunderplugin', d)} "
 
