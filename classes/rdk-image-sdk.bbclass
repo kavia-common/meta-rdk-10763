@@ -105,7 +105,7 @@ def copy_egl_req_files_brcm_dnfl(d,base_dir,logger):
     replace_egl_header_files(d,base_dir,logger)
 
     #now we need to remove X11 references from egl platfomr headers
-    subprocess.call(['sed','-i','/X11\//d',base_dir+"/usr/include/EGL/eglplatform.h"])
+    subprocess.call(['sed','-i',r'/X11\//d',base_dir+"/usr/include/EGL/eglplatform.h"])
     subprocess.call(['sed','-i','/typedef Display/c typedef void *EGLNativeDisplayType;',base_dir+"/usr/include/EGL/eglplatform.h"])
     subprocess.call(['sed','-i','/typedef Pixmap/c typedef void *EGLNativePixmapType;',base_dir+"/usr/include/EGL/eglplatform.h"])
     subprocess.call(['sed','-i','/typedef Window/c typedef void *EGLNativeWindowType;',base_dir+"/usr/include/EGL/eglplatform.h"])
@@ -161,7 +161,7 @@ def copy_egl_req_files_brcm(d,base_dir,logger):
 
 
     #now we need to remove X11 references from egl platfomr headers
-    subprocess.call(['sed','-i','/X11\//d',base_dir+"/usr/include/EGL/eglplatform.h"])
+    subprocess.call(['sed','-i',r'/X11\//d',base_dir+"/usr/include/EGL/eglplatform.h"])
     subprocess.call(['sed','-i','/typedef Display/c typedef void *EGLNativeDisplayType;',base_dir+"/usr/include/EGL/eglplatform.h"])
     subprocess.call(['sed','-i','/typedef Pixmap/c typedef void *EGLNativePixmapType;',base_dir+"/usr/include/EGL/eglplatform.h"])
     subprocess.call(['sed','-i','/typedef Window/c typedef void *EGLNativeWindowType;',base_dir+"/usr/include/EGL/eglplatform.h"])
@@ -204,7 +204,7 @@ def copy_egl_req_files_hank(d,base_dir,logger):
     replace_egl_header_files(d,base_dir,logger)
 
     #now we need to remove X11 references from egl platfomr headers
-    subprocess.call(['sed','-i','/X11\//d',base_dir+"/usr/include/EGL/eglplatform.h"])
+    subprocess.call(['sed','-i',r'/X11\//d',base_dir+"/usr/include/EGL/eglplatform.h"])
     subprocess.call(['sed','-i','/typedef Display/c struct gbm_device;\nstruct gbm_surface;\n\n',base_dir+"/usr/include/EGL/eglplatform.h"])
     subprocess.call(['sed','-i','/typedef Pixmap/c typedef struct gbm_device * EGLNativeDisplayType;\ntypedef struct gbm_surface * EGLNativeWindowType;\n',base_dir+"/usr/include/EGL/eglplatform.h"])
     subprocess.call(['sed','-i',
@@ -302,7 +302,7 @@ def do_license_based_cleanup(d,rreverse_folder):
         copy_egl_req_files_hank(d,base_dir,logger)
     #we are forced to remove the library archive files since it contains
     # references to oem libraries, causing build failures
-        remove_oem_match_fname(base_dir, ".*\.la$", logger)
+        remove_oem_match_fname(base_dir, r".*\.la$", logger)
     #Finally remove any links that are not linked properly
         remove_dead_links(base_dir +"/usr/lib", logger)
         remove_empty_dirs(base_dir,logger)
