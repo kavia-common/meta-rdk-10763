@@ -173,6 +173,8 @@ PREFERRED_VERSION_wpeframework-tools-native = "${@bb.utils.contains('DISTRO_FEAT
 
 # For Apparmor
 DISTRO_FEATURES_append = " apparmor"
+# Add apparmor_earlypolicy.bbclass
+DISTRO_FEATURES_append = " apparmor_segmented_global"
 
 PREFERRED_VERSION_collectd ?= "5.12.0"
 
