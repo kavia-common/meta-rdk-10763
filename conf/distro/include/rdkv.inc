@@ -178,4 +178,4 @@ DISTRO_FEATURES_append = " apparmor_segmented_global"
 
 PREFERRED_VERSION_collectd ?= "5.12.0"
 
-PREFERRED_VERSION_dnsmasq_kirkstone = "2.86"
+PREFERRED_VERSION_dnsmasq_kirkstone = "2.90"
