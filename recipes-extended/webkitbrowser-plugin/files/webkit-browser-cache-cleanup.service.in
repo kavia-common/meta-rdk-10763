@@ -1,8 +1,9 @@
 [Unit]
-Description=Cleans up browser cache
+Description=webkit browser cache cleanup
 
-After=local-fs.target storagemgrmain.service
+After=@WEBKIT_CACHE_CLEAN_SERVICE_ORDER_AFTER@
 Before=wpeframework.service
+DefaultDependencies=no
 
 [Service]
 Type=oneshot
