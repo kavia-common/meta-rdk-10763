@@ -4,18 +4,24 @@ SECTION = "console/utils"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=175792518e4ac015ab6696d16c4f607e"
 
-SRC_URI = "${RDK_GENERIC_ROOT_GIT}/telemetry/generic;protocol=${RDK_GIT_PROTOCOL};branch=${RDK_GIT_BRANCH}"
+#SRC_URI = "${RDK_GENERIC_ROOT_GIT}/telemetry/generic;protocol=${RDK_GIT_PROTOCOL};branch=${RDK_GIT_BRANCH}"
+SRC_URI = "git://github.com/rdkcentral/telemetry.git;protocol=git;nobranch=1"
 
 DEPENDS += "curl cjson glib-2.0 breakpad-wrapper rbus libsyswrapper libunpriv"
 DEPENDS += "rdk-logger"
 
 RDEPENDS_${PN} += "curl cjson glib-2.0 rbus"
 
-PV = "${RDK_RELEASE}+git${SRCPV}"
-SRCREV ?= "${AUTOREV}"
+#PV = "${RDK_RELEASE}+git${SRCPV}"
+#SRCREV ?= "${AUTOREV}"
+
+PV = "1.3.2"
+SRCREV = "7c5d7932287dd497043c4fc04b809ab2f593b149"
+
 S = "${WORKDIR}/git"
 
 CFLAGS += " -Wall -Werror -Wextra -Wno-unused-parameter -Wno-pointer-sign -Wno-sign-compare -Wno-enum-compare -Wno-type-limits -Wno-enum-conversion -Wno-format-truncation"
+CFLAGS += " -DRDK_LOGGER "
 
 # Enable SE HW based cert usage
 CFLAGS_append += "${@bb.utils.contains('DISTRO_FEATURES', 'ENABLE_HW_CERT_USAGE',' -DENABLE_HW_CERT_USAGE -DENABLE_CUSTOM_ENGINE ',' ',d)}"
