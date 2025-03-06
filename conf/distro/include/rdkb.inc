@@ -57,6 +57,7 @@ PREFERRED_PROVIDER_hal-vlan ?= "hal-vlan-generic"
 PREFERRED_PROVIDER_hal-wifi ?= "hal-wifi-generic"
 PREFERRED_PROVIDER_hal-epon ?= "hal-epon-generic"
 PREFERRED_PROVIDER_hal-firewall ?= "hal-firewall-generic"
+PREFERRED_VERSION_jquery = "3.7.1"
 
 PREFERRED_VERSION_libmtp = "1.1.5"
 PREFERRED_VERSION_mosquitto_dunfell = "1.6.%"

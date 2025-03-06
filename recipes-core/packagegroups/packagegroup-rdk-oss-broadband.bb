@@ -33,6 +33,7 @@ RDEPENDS_packagegroup-rdk-oss-broadband = "\
     iproute2 \
     iptables \
     jansson \
+    jquery \
     libgcrypt \
     libgpg-error \
     libmtp \
