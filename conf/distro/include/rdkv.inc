@@ -35,9 +35,9 @@ PREFERRED_VERSION_rust-llvm-native_kirkstone = "1.72.0"
 PREFERRED_VERSION_rust-cross-canadian_kirkstone = "1.72.0"
 PREFERRED_VERSION_rust-cross-canadian-native_kirkstone = "1.72.0"
 
-PREFERRED_VERSION_glib-networking_kirkstone = "2.74.0"
-PREFERRED_VERSION_glib-2.0_kirkstone = "2.74.6"
-PREFERRED_VERSION_glib-2.0-native_kirkstone = "2.74.6"
+PREFERRED_VERSION_glib-networking_kirkstone = "2.72.2"
+PREFERRED_VERSION_glib-2.0_kirkstone = "2.72.3"
+PREFERRED_VERSION_glib-2.0-native_kirkstone = "2.72.3"
 
 PREFERRED_VERSION_heaptrack = "${@bb.utils.contains('DISTRO_FEATURES', 'enable_heaptrack', '1.5.0', '', d)}"
 PREFERRED_VERSION_libunwind =  "${@bb.utils.contains('DISTRO_FEATURES', 'enable_heaptrack', '1.7.0', '', d)}"
