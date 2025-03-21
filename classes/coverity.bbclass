@@ -93,10 +93,10 @@ do_compile[prefuncs] += "do_generate_coverity_build"
 COVERITY_BLACKLIST_PATH += "openembedded-core | meta-openembedded | meta-rdk-ext"
 
 # Ignore linux kernel Build
-COVERITY_BLACKLIST_PATH += "linux-yocto-cougarmountain | linux-avalanche | linux-yocto-custom | stblinux | rglinux | display-linux-kernel | tsout-linux-kernel | libcppp"
+COVERITY_BLACKLIST_PATH += "linux-yocto-cougarmountain | linux-avalanche | linux-yocto-custom | stblinux | rglinux | display-linux-kernel | tsout-linux-kernel | libcppp | bcalinux"
 
 # Ignore driver componenent
-COVERITY_BLACKLIST_PATH += "bbu-kdriver | docsis-headers | docsis | broadcom-refsw | broadcom-moca | broadcom-wifi-src"
+COVERITY_BLACKLIST_PATH += "bbu-kdriver | docsis-headers | docsis | broadcom-refsw | broadcom-moca | broadcom-wifi-src | nat46 | boops-k"
 
 # Ignore problematic components
 COVERITY_BLACKLIST_PATH += "avro-c | graphite2 | zilker | wdmp-c | ctrlm-testapp | pxcore-libnode | wpeframework  | mkimage"
