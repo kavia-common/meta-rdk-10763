@@ -176,6 +176,9 @@ DISTRO_FEATURES_append = " apparmor"
 # Add apparmor_earlypolicy.bbclass
 DISTRO_FEATURES_append = " apparmor_segmented_global"
 
+# MaintenanceManager Journal Logging
+DISTRO_FEATURES_append = " maintenance_journal_logging"
+
 PREFERRED_VERSION_collectd ?= "5.12.0"
 
 PREFERRED_VERSION_dnsmasq_kirkstone = "2.90"
