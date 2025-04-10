@@ -12,11 +12,13 @@ DEPENDS += "rdk-logger"
 
 RDEPENDS_${PN} += "curl cjson glib-2.0 rbus"
 
+#Telemetry is federated hence update SRCREV and PV manually for component release
 #PV = "${RDK_RELEASE}+git${SRCPV}"
 #SRCREV ?= "${AUTOREV}"
 
-PV = "1.3.2"
-SRCREV = "7c5d7932287dd497043c4fc04b809ab2f593b149"
+
+PV = "1.4.1"
+SRCREV = "f38d192e0f8206052f252f90b45f46be8a8cfbdc"
 
 S = "${WORKDIR}/git"
 
