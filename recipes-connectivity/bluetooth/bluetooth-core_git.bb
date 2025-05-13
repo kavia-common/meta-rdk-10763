@@ -20,6 +20,10 @@ S = "${WORKDIR}/git"
 CFLAGS_append_morty = " -DMORTY_BUILD"
 CFLAGS_append_daisy = " -DMORTY_BUILD"
 
+# BT unsupported gamepad feature enabled
+ENABLE_UNSUPPORT_GAMEPAD = "--enable-unsupportedgamepad=${@bb.utils.contains('DISTRO_FEATURES', 'disable_unsupported_gamepad','no','yes',d)}"
+EXTRA_OECONF += " ${ENABLE_UNSUPPORT_GAMEPAD} "
+
 ENABLE_BTR_IFCE = "--enable-btr-ifce=${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', \
                                             bb.utils.contains('DISTRO_FEATURES', 'gdbus_bluez5', 'gdbus_bluez5', \
                                                 bb.utils.contains('DISTRO_FEATURES', 'bluez5', 'bluez5', 'bluez4', d), d), 'none', d)}"
