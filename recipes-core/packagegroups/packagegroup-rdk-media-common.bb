@@ -48,6 +48,7 @@ RDEPENDS_packagegroup-rdk-media-common = "\
     telemetry \
     webconfig-framework \
     webcfg \
+    rdm-agent \
     "
 RDEPENDS_packagegroup-rdk-media-common_append_qemuall = " sysint "
 RDEPENDS_packagegroup-rdk-media-common_append_qemuall = " sysint-conf "
