@@ -17,8 +17,8 @@ RDEPENDS_${PN} += "curl cjson glib-2.0 rbus"
 #SRCREV ?= "${AUTOREV}"
 
 
-PV = "1.4.1"
-SRCREV = "f38d192e0f8206052f252f90b45f46be8a8cfbdc"
+PV = "1.4.4"
+SRCREV = "3dc08c1b04eb1e6696363720594403213075fe96"
 
 S = "${WORKDIR}/git"
 
@@ -31,7 +31,7 @@ CFLAGS_append += "${@bb.utils.contains('DISTRO_FEATURES', 'ENABLE_HW_CERT_USAGE'
 
 inherit pkgconfig autotools systemd ${@bb.utils.contains("DISTRO_FEATURES", "kirkstone", "python3native", "pythonnative", d)} breakpad-logmapper
 
-CFLAGS += " -DDROP_ROOT_PRIV "
+CFLAGS += " -DDROP_ROOT_PRIV -DENABLE_MTLS"
 
 LDFLAGS_append = " \
         -lbreakpadwrapper \
