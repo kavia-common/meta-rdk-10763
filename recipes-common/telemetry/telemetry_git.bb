@@ -17,8 +17,8 @@ RDEPENDS_${PN} += "curl cjson glib-2.0 rbus"
 #SRCREV ?= "${AUTOREV}"
 
 
-PV = "1.4.4"
-SRCREV = "3dc08c1b04eb1e6696363720594403213075fe96"
+PV = "1.4.4v2"
+SRCREV = "0a145755b46c336f9d04e8d98dd7dfcd5d1d16bc"
 
 S = "${WORKDIR}/git"
 
