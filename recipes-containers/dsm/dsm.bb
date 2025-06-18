@@ -8,7 +8,7 @@ SRC_URI = "${CMF_GITHUB_ROOT}/DSM;protocol=${CMF_GIT_PROTOCOL};branch=${CMF_GITH
            file://dsm.service "
 
 SRCREV = "c3cfd0a9d1ee1e9c2f2e8db4348b314aa32439bc"
-SRCREV_kirkstone = "6438ddd50c8b88dd378ded3496fdd8365758f7d0"
+SRCREV_kirkstone = "c0eaebeee55ead1a7b82a4c03a54ab8e7a7e4752"
 DEPENDS_append_kirkstone = " dobby "
 
 EXTRA_OECMAKE =  " -DENABLE_RBUS_PROVIDER=ON"
