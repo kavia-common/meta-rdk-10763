@@ -48,9 +48,12 @@ python versions_post_processing() {
     topdir = e.data.getVar('TOPDIR', True)
     versions_file = os.path.join(topdir, 'versions.txt')
 
-    rf = open(versions_file, 'r')
-    versions = set(rf.readlines())
-    rf.close()
+    if os.path.exists(versions_file):
+        rf = open(versions_file, 'r')
+        versions = set(rf.readlines())
+        rf.close()
+    else:
+        versions = set()
 
     layers = (e.data.getVar("BBLAYERS", True) or "").split()
     for layer in layers:
