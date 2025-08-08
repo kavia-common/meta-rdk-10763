@@ -1,8 +1,7 @@
 SUMMARY = "A simple library for rdk certificate selector/locator"
 DESCRIPTION = "This library will select and provide certificate to application"
 
-LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
+LICENSE = "CLOSED"
 
 S = "${WORKDIR}/git"
 DEPENDS = "mountutils "
