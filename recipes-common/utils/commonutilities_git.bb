@@ -16,7 +16,7 @@ SRC_URI = "git://github.com/rdkcentral/common_utilities.git;protocol=git"
 
 # Release version - 1.3.0
 # 14 Jul 2025
-SRCREV = "3b3f137cea2e45399bff37774a9effb84bd61ad2"
+SRCREV = "dcbb1f689079fe3301f0074adfe2a108b8d2d826"
 
 PV = "1.3.0"
 
