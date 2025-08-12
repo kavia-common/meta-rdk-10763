@@ -3,13 +3,10 @@ SUMMARY = "rbus library component"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ed63516ecab9f06e324238dd2b259549"
 
-SRC_URI = "git://github.com/rdkcentral/rbus.git;branch=release;protocol=https"
-SRC_URI_append = " file://gtest_libraries_check.patch"
-
-SRCREV = "v2.4.0"
-SRCREV_FORMAT = "base"
-
-PV = "${RDK_RELEASE}+git${SRCPV}"
+SRC_URI = "git://github.com/rdkcentral/rbus.git;branch=develop;protocol=https"
+SRCREV = "8bd2bd90ab69f8933220d966a04ddfc657d8fd08"
+PV = "2.6.0"
+PR = "r7"
 
 S = "${WORKDIR}/git"
 
@@ -22,8 +19,8 @@ EXTRA_OECMAKE += " -DCMAKE_BUILD_TYPE=Release "
 EXTRA_OECMAKE += " -DMSG_ROUNDTRIP_TIME=ON -DENABLE_RDKLOGGER=ON"
 
 #Gtest Specific Enablements
-EXTRA_OECMAKE += " ${@bb.utils.contains('DISTRO_FEATURES', 'gtestapp', '-DENABLE_UNIT_TESTING=ON', '', d)}"
-EXTRA_OECMAKE += " ${@bb.utils.contains('DISTRO_FEATURES', 'gtestapp', '-DBUILD_RBUS_BENCHMARK_TEST=ON -DBUILD_RBUS_UNIT_TEST=ON -DBUILD_RBUS_SAMPLE_APPS=ON', '-DBUILD_RBUS_SAMPLE_APPS=OFF', d)}"
+EXTRA_OECMAKE += " ${@bb.utils.contains('DISTRO_FEATURES', 'gtestapp', '-DENABLE_UNIT_TESTING=ON -DBUILD_RBUS_BENCHMARK_TEST=ON', '', d)}"
+EXTRA_OECMAKE += " ${@bb.utils.contains('DISTRO_FEATURES', 'RBUS_ENABLE_TESTAPPS', '-DBUILD_RBUS_SAMPLE_APPS=ON -DBUILD_RBUS_TEST_APPS=ON ', '-DBUILD_RBUS_SAMPLE_APPS=OFF -DBUILD_RBUS_TEST_APPS=OFF', d)}"
 DEPENDS_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'gtestapp', ' gtest benchmark ', ' ', d)}"
 
 #Dunfell Specific CFlags
