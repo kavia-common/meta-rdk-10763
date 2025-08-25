@@ -813,3 +813,168 @@
 2025-08-25 08:43:23,694 - Knowledge - INFO - Updating org costs, total cost: 0.017281200000000004
 2025-08-25 08:43:24,248 - Knowledge - INFO - Saving knowledge to Redis...
 2025-08-25 08:43:24,310 - Knowledge - INFO - Knowledge saved to Redis successfully
+2025-08-25 08:45:12,333 - Knowledge - INFO - Redis support added with prefix knowledge:b55134d:
+2025-08-25 08:45:12,854 - Knowledge - INFO - load persisted knowledge: begin
+2025-08-25 08:45:13,422 - Knowledge - INFO - Persisted knowledge files in /app/data/b2c/10763/b55134d/meta-rdk-10763/.knowledge have been renamed to use .json
+2025-08-25 08:45:13,434 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,434 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,434 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdkc.inc
+2025-08-25 08:45:13,442 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,442 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,443 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdk_security_flags.inc
+2025-08-25 08:45:13,451 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,451 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,452 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-benchmark/stress-ng/files/stress-ng-tests.sh
+2025-08-25 08:45:13,461 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,461 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,462 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-common/gtest-apps/gtest-apps/gtest_apps_download.sh
+2025-08-25 08:45:13,471 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,471 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,471 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/qt5-versions.inc
+2025-08-25 08:45:13,479 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,479 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,480 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-containers/dobby/dobby.inc
+2025-08-25 08:45:13,488 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,488 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,488 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/gstreamer-versions.inc
+2025-08-25 08:45:13,497 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,497 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,497 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/libsoup2.inc
+2025-08-25 08:45:13,506 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,506 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,506 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-benchmark/stress-ng/files/openssl-ptest-stress.sh
+2025-08-25 08:45:13,516 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,516 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,516 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdk-esdk-conf.inc
+2025-08-25 08:45:13,526 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,526 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,526 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-extended/webkitbrowser-plugin/include/webkitbrowser_memorylimits.fhd.inc
+2025-08-25 08:45:13,534 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,534 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,534 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-test/leakcheck-msg/files/utility.c
+2025-08-25 08:45:13,543 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,543 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,543 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdkvemu.inc
+2025-08-25 08:45:13,552 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,552 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,552 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-test/leakcheck-msg/files/msgq_receive.c
+2025-08-25 08:45:13,560 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,560 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,561 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdk-external-src.inc
+2025-08-25 08:45:13,569 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,569 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,569 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdk_multilib.inc
+2025-08-25 08:45:13,577 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,578 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,578 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-extended/webkitbrowser-plugin/include/webkitbrowser_properties.inc
+2025-08-25 08:45:13,587 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,588 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,588 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-support/network-zero-conf/files/board_access.sh
+2025-08-25 08:45:13,597 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,597 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,597 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-test/hello/files/hello.c
+2025-08-25 08:45:13,605 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,605 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,605 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-benchmark/stress-ng/files/rdk_oss_uploadSTBLogs.sh
+2025-08-25 08:45:13,614 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,614 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,614 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-test/hello/files/run-hello-app.sh
+2025-08-25 08:45:13,623 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,623 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,623 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-common/safec-common-wrapper/files/safec_lib.h
+2025-08-25 08:45:13,639 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,640 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,640 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-core/images/sdk-common.inc
+2025-08-25 08:45:13,650 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,650 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,651 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/rename_srcrev.sh
+2025-08-25 08:45:13,661 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,662 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,662 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/libsoup3.inc
+2025-08-25 08:45:13,671 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,671 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,671 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdk_backtrace_log.inc
+2025-08-25 08:45:13,679 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,680 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,680 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-extended/webkitbrowser-plugin/include/webkitbrowser_memorylimits.2gb.inc
+2025-08-25 08:45:13,688 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,689 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,689 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-support/network-zero-conf/files/default-time-setter.sh
+2025-08-25 08:45:13,697 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,697 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,697 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/include/basehash_ignore_vars.inc
+2025-08-25 08:45:13,706 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,706 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,707 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-extended/webkitbrowser-plugin/files/clearWebkitBrowserCache.sh
+2025-08-25 08:45:13,715 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,715 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,715 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdkx.inc
+2025-08-25 08:45:13,726 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,726 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,727 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdk_lto.inc
+2025-08-25 08:45:13,737 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,737 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,737 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-common/debug-tools/files/debug-tools_download.sh
+2025-08-25 08:45:13,746 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,746 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,746 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-benchmark/stress-ng/files/openssl-ptest-perf_stats.sh
+2025-08-25 08:45:13,757 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,758 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,758 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-core/images/rdk-generic-media-common.inc
+2025-08-25 08:45:13,767 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,767 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,768 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/license_flags_accepted.inc
+2025-08-25 08:45:13,777 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,777 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,777 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-extended/webkitbrowser-plugin/include/webkitbrowser_memorylimits.uhd.inc
+2025-08-25 08:45:13,786 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,786 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,786 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/include/hashbase_whitelist.inc
+2025-08-25 08:45:13,795 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,795 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,795 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdkv.inc
+2025-08-25 08:45:13,804 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,804 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,805 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdk-versions.inc
+2025-08-25 08:45:13,814 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,814 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,814 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/setscene_enforce_whitelist.inc
+2025-08-25 08:45:13,823 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,823 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,823 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-benchmark/stress-ng/files/capture-proc-metrics.sh
+2025-08-25 08:45:13,833 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,833 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,834 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdkb.inc
+2025-08-25 08:45:13,842 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,843 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,843 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/rdkb_backtrace_log.inc
+2025-08-25 08:45:13,851 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,851 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,852 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/CONTRIBUTING.md
+2025-08-25 08:45:13,860 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,860 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,860 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/setscene_enforce_ignore_tasks.inc
+2025-08-25 08:45:13,869 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,869 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,869 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-common/sys_mon_tools/sys_mon_tools.inc
+2025-08-25 08:45:13,878 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,878 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,878 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/conf-notes.txt
+2025-08-25 08:45:13,887 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,887 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,887 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-extended/webkitbrowser-plugin/include/webkitbrowser_memorylimits.default.inc
+2025-08-25 08:45:13,895 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,895 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,896 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/conf/distro/include/license_flags_whitelist.inc
+2025-08-25 08:45:13,904 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/meta-rdk-10763.git:kavia-master
+2025-08-25 08:45:13,904 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f3091fa9d90>
+2025-08-25 08:45:13,904 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/10763/b55134d/meta-rdk-10763/recipes-core/images/rdk-esdk-override.inc
+2025-08-25 08:45:13,908 - Knowledge - INFO - load persisted knowledge: end
+2025-08-25 08:45:13,908 - Knowledge - INFO - load persisted docinfo: begin
+2025-08-25 08:45:13,910 - Knowledge - INFO - load persisted docinfo: end
+2025-08-25 08:45:14,066 - Knowledge - INFO - worker kw1 created with dedicated MongoDB connection (total: 1)
+2025-08-25 08:45:14,067 - Knowledge - INFO - knowledge worker kw1 start
+2025-08-25 08:45:14,068 - Knowledge - INFO - Knowledge creation complete
+2025-08-25 08:45:14,070 - Knowledge - INFO - Updating org costs, total cost: 0
+2025-08-25 08:45:14,073 - Knowledge - INFO - Saving knowledge to Redis...
+2025-08-25 08:45:14,094 - Knowledge - INFO - Knowledge saved to Redis successfully
